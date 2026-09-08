@@ -50,7 +50,7 @@
             flex-wrap: wrap; 
         }
 
-        /* CARD DE CAPA PRINCIPAL (totalmente preto/sem rosa) */
+        /* CARD DE CAPA PRINCIPAL (preto, sem rosa) */
         .card-capa {
             max-width: 450px; 
             flex: 1 1 350px; 
@@ -94,11 +94,10 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
-        /* Legenda agora é BRANCA, sem rosa */
         .legenda-capa {
             margin: 20px 0 0 0;
             font-size: 1.4em;
-            color: #ffffff;  /* mudado de #ffb3c6 para branco */
+            color: #ffffff;
             font-weight: 600;
             font-style: italic;
         }
@@ -133,7 +132,7 @@
             margin-top: 15px;
         }
 
-        /* Card da letra (rosa claro, mantido) */
+        /* Card da letra (rosa) */
         .card-letra {
             max-width: 280px; 
             flex: 1 1 200px;
@@ -169,7 +168,7 @@
             color: #ff3366;
         }
 
-        /* Container da mensagem (rosa, mantido) */
+        /* Container da mensagem (rosa) */
         .container-mensagem {
             max-width: 800px;
             margin: 0 auto 50px auto; 
@@ -209,34 +208,25 @@
             font-size: 1.4em;
             color: #ff3366;
         }
-        
-        /* Botão de play grande e visível */
-        .btn-play {
-            background: #ff3366;
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            font-weight: bold;
-            padding: 15px 35px;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.4);
-            transition: 0.2s;
-            margin-top: 10px;
-        }
-        .btn-play:hover {
-            transform: scale(1.05);
-            background: #e62e5c;
-        }
-        .btn-play:active {
-            transform: scale(0.95);
-        }
 
+        /* Player de áudio (visível para controle) */
         audio {
             width: 100%;
             border-radius: 10px;
             outline: none;
-            margin-top: 15px;
+            margin-top: 10px;
+        }
+
+        /* Mensagem de aviso para iniciar a música */
+        .aviso-autoplay {
+            font-size: 0.9em;
+            color: #ff3366;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            animation: piscar 2s infinite;
         }
 
         /* Título das fotos (rosa) */
@@ -302,7 +292,6 @@
             font-weight: 600;
         }
 
-        /* Mensagem de erro do áudio */
         .erro-audio {
             color: #cc0000;
             font-weight: bold;
@@ -318,23 +307,18 @@
 
         <div class="container-capa-flex">
             
-            <!-- CARD DE CAPA (sem rosa) -->
+            <!-- CARD DE CAPA -->
             <div class="card-capa" onclick="revelarSurpresa()">
                 <h1>FELIZ ANIVERSÁRIO ISA</h1>
-                
                 <img src="foto_card.png" alt="Foto de Capa Isa">
-                
-                <!-- Legenda agora BRANCA -->
                 <p class="legenda-capa">A aniversáriante mais linda desse universo!</p>
-                
                 <div id="texto-surpresa">
                     Você é muito especial para mim! Aproveite muito o seu dia, pois você merece o mundo inteiro. Que este novo ano seja repleto de amor, paz e muitas conquistas. ❤️
                 </div>
-                
-                <p class="dica-clique">(Toque na tela para a surpresa e a música!)</p>
+                <p class="dica-clique">(Toque na tela para a surpresa)</p>
             </div>
 
-            <!-- Card da letra (rosa, mantido) -->
+            <!-- Card da letra -->
             <div class="card-letra">
                 <div class="icone-musica">🎵</div>
                 <p id="letra-dinamica">...</p>
@@ -353,14 +337,16 @@
             <div class="musica">
                 <h3>🎶 Aumenta o som!</h3>
                 
-                <!-- Botão de play grande para iniciar a música -->
-                <button class="btn-play" id="botaoPlay">▶ Tocar Música</button>
-                
-                <!-- Player de áudio (oculto, mas ainda funcional) -->
-                <audio id="meuAudio">
+                <!-- Player de áudio (visível) -->
+                <audio id="meuAudio" controls>
                     <source src="musica.mp3" type="audio/mpeg">
                     Seu navegador não suporta áudio.
                 </audio>
+                
+                <!-- Aviso que aparece se o autoplay for bloqueado -->
+                <div id="avisoAutoplay" class="aviso-autoplay">
+                    🔇 Clique em qualquer lugar da página para iniciar a música
+                </div>
                 
                 <div id="erroAudio" class="erro-audio" style="display:none;">
                     ⚠️ Arquivo de música não encontrado. Verifique se "musica.mp3" está na mesma pasta.
@@ -385,45 +371,48 @@
 
     <script>
         var audio = document.getElementById('meuAudio');
-        var botaoPlay = document.getElementById('botaoPlay');
+        var aviso = document.getElementById('avisoAutoplay');
         var erroDiv = document.getElementById('erroAudio');
 
-        // Botão de play: inicia ou pausa
-        botaoPlay.addEventListener('click', function(e) {
-            e.stopPropagation(); // impede que o clique no botão dispare o clique no body
-            if (audio.paused) {
-                audio.play().catch(function(err) {
-                    erroDiv.style.display = 'block';
-                    console.error('Erro ao tocar:', err);
+        // 1. TENTA TOCAR AUTOMATICAMENTE ASSIM QUE A PÁGINA CARREGA
+        window.addEventListener('load', function() {
+            var promessa = audio.play();
+            if (promessa !== undefined) {
+                promessa.then(function() {
+                    // Se tocou, esconde o aviso
+                    aviso.style.display = 'none';
+                }).catch(function(error) {
+                    // Se bloqueou, mostra o aviso
+                    aviso.style.display = 'inline-block';
+                    console.log("Autoplay bloqueado. Aguardando clique do usuário.");
                 });
-                botaoPlay.textContent = '⏸ Pausar';
-            } else {
-                audio.pause();
-                botaoPlay.textContent = '▶ Tocar Música';
             }
         });
 
-        // Quando a música terminar, volta o texto do botão
-        audio.addEventListener('ended', function() {
-            botaoPlay.textContent = '▶ Tocar Música';
-        });
-
-        // Clique em qualquer lugar da página também tenta tocar (fallback)
+        // 2. QUALQUER CLICK NA PÁGINA INICIA A MÚSICA (se estiver pausada)
         document.body.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play().catch(function(err) {
-                    // não mostra erro aqui para não incomodar
+                    // Se der erro (ex: arquivo não encontrado), mostra erro
+                    erroDiv.style.display = 'block';
                 });
-                botaoPlay.textContent = '⏸ Pausar';
+                // Esconde o aviso após o clique
+                aviso.style.display = 'none';
             }
         });
 
-        // Mostra erro se o arquivo não carregar
-        audio.addEventListener('error', function() {
-            erroDiv.style.display = 'block';
+        // 3. Se a música terminar, não faz nada (apenas para não ficar repetindo)
+        audio.addEventListener('ended', function() {
+            // Opcional: mostrar algo
         });
 
-        // Função da surpresa (texto escondido)
+        // 4. Mostra erro se o arquivo não carregar
+        audio.addEventListener('error', function() {
+            erroDiv.style.display = 'block';
+            aviso.style.display = 'none';
+        });
+
+        // 5. Função da surpresa (texto escondido)
         function revelarSurpresa() {
             var texto = document.getElementById('texto-surpresa');
             var dica = document.querySelector('.dica-clique');
@@ -446,7 +435,7 @@
             { tempo: 0, texto: "🎵<br>..." },
             { tempo: 14, texto: "Tudo vai ficar bem<br>As flores vão nascer de novo depois de amanhã" },
             { tempo: 20, texto: "Porque o inverno tá passando<br>A chuva já tá estiando" },
-            // --- COLOQUE A LETRA COMPLETA AQUI ---
+            // --- COLOQUE A LETRA COMPLETA AQUI (com os tempos certos) ---
             { tempo: 25, texto: "Cole a próxima parte da letra aqui" },
             { tempo: 34, texto: "Cole a próxima parte da letra aqui" },
             { tempo: 42, texto: "Cole a próxima parte da letra aqui" },
