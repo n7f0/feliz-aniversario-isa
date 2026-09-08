@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Feliz Aniversário, Isa!</title>
+    
+    <!-- Fonte fofa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fundo_site.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
+            font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            color: #d84b7a;
+            margin: 0;
+            padding: 0; 
+        }
+
+        .barra-topo {
+            background: rgba(0, 0, 0, 0.4); 
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            width: 100%;
+            height: 80px; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            margin-bottom: 40px;
+        }
+
+        .conteudo-principal {
+            padding: 0 20px 40px 20px;
+        }
+
+        /* Container dos cards lado a lado */
+        .container-capa-flex {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto 40px auto;
+            flex-wrap: wrap; 
+        }
+
+        /* CARD DE CAPA PRINCIPAL (totalmente preto/sem rosa) */
+        .card-capa {
+            max-width: 450px; 
+            flex: 1 1 350px; 
+            
+            background: rgba(0, 0, 0, 0.75); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            
+            padding: 25px 25px 30px 25px;
+            border-radius: 35px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .card-capa:hover {
+            transform: scale(1.02);
+        }
+
+        h1 { 
+            color: #ffffff; 
+            font-size: 2.6em;
+            text-shadow: 2px 2px 10px rgba(255, 51, 102, 0.3); 
+            margin-top: 0;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .card-capa img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        /* Legenda agora é BRANCA, sem rosa */
+        .legenda-capa {
+            margin: 20px 0 0 0;
+            font-size: 1.4em;
+            color: #ffffff;  /* mudado de #ffb3c6 para branco */
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .dica-clique {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 10px;
+            margin-bottom: 0;
+            animation: piscar 2s infinite; 
+        }
+
+        @keyframes piscar {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        #texto-surpresa {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease, opacity 0.6s ease, margin-top 0.6s ease;
+            color: #ffffff;
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        #texto-surpresa.mostrar {
+            max-height: 200px; 
+            opacity: 1;
+            margin-top: 15px;
+        }
+
+        /* Card da letra (rosa claro, mantido) */
+        .card-letra {
+            max-width: 280px; 
+            flex: 1 1 200px;
+            
+            background: rgba(255, 228, 242, 0.9);
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            
+            padding: 30px 20px;
+            border-radius: 35px;
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2); 
+            border: 3px solid #ffb3c6; 
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
+        }
+
+        #letra-dinamica {
+            font-size: 1.4em;
+            line-height: 1.6;
+            color: #ba2858;
+            font-style: italic;
+            font-weight: 600;
+            margin: 0;
+            transition: opacity 0.4s ease; 
+        }
+
+        .icone-musica {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #ff3366;
+        }
+
+        /* Container da mensagem (rosa, mantido) */
+        .container-mensagem {
+            max-width: 800px;
+            margin: 0 auto 50px auto; 
+            
+            background: rgba(255, 228, 242, 0.85);
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px); 
+            
+            padding: 35px 30px;
+            border-radius: 35px;
+            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2);
+            border: 2px solid #ffb3c6; 
+        }
+
+        .mensagem { 
+            font-size: 1.3em; 
+            line-height: 1.8; 
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: #ba2858;
+            font-weight: 600;
+        }
+
+        .musica {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px 30px;
+            border-radius: 20px;
+            margin: 0 auto;
+            border: 2px dashed #ffb3c6;
+            display: inline-block;
+            width: 80%; 
+        }
+
+        .musica h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            color: #ff3366;
+        }
+        
+        /* Botão de play grande e visível */
+        .btn-play {
+            background: #ff3366;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 15px 35px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 51, 102, 0.4);
+            transition: 0.2s;
+            margin-top: 10px;
+        }
+        .btn-play:hover {
+            transform: scale(1.05);
+            background: #e62e5c;
+        }
+        .btn-play:active {
+            transform: scale(0.95);
+        }
+
+        audio {
+            width: 100%;
+            border-radius: 10px;
+            outline: none;
+            margin-top: 15px;
+        }
+
+        /* Título das fotos (rosa) */
+        .titulo-fotos-card {
+            display: inline-block;
+            background: rgba(255, 228, 242, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            border: 2px solid #ffb3c6;
+            box-shadow: 0 8px 20px rgba(255, 51, 102, 0.2);
+        }
+
+        .titulo-fotos-card h3 { 
+            color: #ff3366; 
+            font-size: 1.8em; 
+            margin: 0;
+        }
+
+        .fotos {
+            display: flex;
+            justify-content: center;
+            gap: 30px; 
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .foto-card {
+            background: rgba(255, 228, 242, 0.85);
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 15px 20px 15px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 51, 102, 0.15);
+            transition: all 0.3s ease; 
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #ffb3c6;
+        }
+
+        .foto-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 51, 102, 0.4);
+            background: rgba(255, 228, 242, 1);
+        }
+
+        .foto-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .foto-card p {
+            margin: 15px 0 0 0;
+            font-size: 1.1em;
+            color: #d84b7a;
+            font-weight: 600;
+        }
+
+        /* Mensagem de erro do áudio */
+        .erro-audio {
+            color: #cc0000;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="barra-topo"></div>
+
+    <div class="conteudo-principal">
+
+        <div class="container-capa-flex">
+            
+            <!-- CARD DE CAPA (sem rosa) -->
+            <div class="card-capa" onclick="revelarSurpresa()">
+                <h1>FELIZ ANIVERSÁRIO ISA</h1>
+                
+                <img src="foto_card.png" alt="Foto de Capa Isa">
+                
+                <!-- Legenda agora BRANCA -->
+                <p class="legenda-capa">A aniversáriante mais linda desse universo!</p>
+                
+                <div id="texto-surpresa">
+                    Você é muito especial para mim! Aproveite muito o seu dia, pois você merece o mundo inteiro. Que este novo ano seja repleto de amor, paz e muitas conquistas. ❤️
+                </div>
+                
+                <p class="dica-clique">(Toque na tela para a surpresa e a música!)</p>
+            </div>
+
+            <!-- Card da letra (rosa, mantido) -->
+            <div class="card-letra">
+                <div class="icone-musica">🎵</div>
+                <p id="letra-dinamica">...</p>
+                <span style="font-size: 0.75em; color: #ff3366; margin-top: 20px; font-weight: bold;">- Marília Mendonça</span>
+            </div>
+
+        </div> 
+
+        <div class="container-mensagem">
+            <p class="mensagem">
+                Amiga, preparei esse cantinho super especial para celebrar o seu dia!<br>
+                Você é uma pessoa incrível e eu amo todos os nossos momentos juntas.<br>
+                Que o seu novo ano seja tão perfeito quanto a nossa amizade! 💕
+            </p>
+
+            <div class="musica">
+                <h3>🎶 Aumenta o som!</h3>
+                
+                <!-- Botão de play grande para iniciar a música -->
+                <button class="btn-play" id="botaoPlay">▶ Tocar Música</button>
+                
+                <!-- Player de áudio (oculto, mas ainda funcional) -->
+                <audio id="meuAudio">
+                    <source src="musica.mp3" type="audio/mpeg">
+                    Seu navegador não suporta áudio.
+                </audio>
+                
+                <div id="erroAudio" class="erro-audio" style="display:none;">
+                    ⚠️ Arquivo de música não encontrado. Verifique se "musica.mp3" está na mesma pasta.
+                </div>
+            </div>
+        </div>
+
+        <div class="titulo-fotos-card">
+            <h3>📸 Nossos Melhores Momentos</h3>
+        </div>
+        
+        <div class="fotos">
+            <div class="foto-card"><img src="foto1.jpg" alt="Foto 1"><p>Dia inesquecível!</p></div>
+            <div class="foto-card"><img src="foto2.jpg" alt="Foto 2"><p>Nossa viagem ✈️</p></div>
+            <div class="foto-card"><img src="foto3.jpg" alt="Foto 3"><p>Sempre juntas 💕</p></div>
+            <div class="foto-card"><img src="foto4.jpg" alt="Foto 4"><p>Muitas risadas 😂</p></div>
+            <div class="foto-card"><img src="foto5.jpg" alt="Foto 5"><p>Parceiras!</p></div>
+            <div class="foto-card"><img src="foto6.jpg" alt="Foto 6"><p>Te amo amiga!</p></div>
+        </div>
+
+    </div>
+
+    <script>
+        var audio = document.getElementById('meuAudio');
+        var botaoPlay = document.getElementById('botaoPlay');
+        var erroDiv = document.getElementById('erroAudio');
+
+        // Botão de play: inicia ou pausa
+        botaoPlay.addEventListener('click', function(e) {
+            e.stopPropagation(); // impede que o clique no botão dispare o clique no body
+            if (audio.paused) {
+                audio.play().catch(function(err) {
+                    erroDiv.style.display = 'block';
+                    console.error('Erro ao tocar:', err);
+                });
+                botaoPlay.textContent = '⏸ Pausar';
+            } else {
+                audio.pause();
+                botaoPlay.textContent = '▶ Tocar Música';
+            }
+        });
+
+        // Quando a música terminar, volta o texto do botão
+        audio.addEventListener('ended', function() {
+            botaoPlay.textContent = '▶ Tocar Música';
+        });
+
+        // Clique em qualquer lugar da página também tenta tocar (fallback)
+        document.body.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play().catch(function(err) {
+                    // não mostra erro aqui para não incomodar
+                });
+                botaoPlay.textContent = '⏸ Pausar';
+            }
+        });
+
+        // Mostra erro se o arquivo não carregar
+        audio.addEventListener('error', function() {
+            erroDiv.style.display = 'block';
+        });
+
+        // Função da surpresa (texto escondido)
+        function revelarSurpresa() {
+            var texto = document.getElementById('texto-surpresa');
+            var dica = document.querySelector('.dica-clique');
+            
+            texto.classList.toggle('mostrar');
+            
+            if (texto.classList.contains('mostrar')) {
+                dica.style.display = 'none';
+            } else {
+                setTimeout(function() {
+                    dica.style.display = 'block';
+                }, 600);
+            }
+        }
+
+        // ============================================================
+        // LETRA DA MÚSICA (substitua os placeholders pelos versos reais)
+        // ============================================================
+        var legendas = [
+            { tempo: 0, texto: "🎵<br>..." },
+            { tempo: 14, texto: "Tudo vai ficar bem<br>As flores vão nascer de novo depois de amanhã" },
+            { tempo: 20, texto: "Porque o inverno tá passando<br>A chuva já tá estiando" },
+            // --- COLOQUE A LETRA COMPLETA AQUI ---
+            { tempo: 25, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 34, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 42, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 50, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 58, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 65, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 75, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 85, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 95, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 105, texto: "Cole a próxima parte da letra aqui" },
+            { tempo: 115, texto: "🎵<br>..." } 
+        ];
+
+        var indiceAtual = -1;
+
+        audio.addEventListener('timeupdate', function() {
+            let tempoAtual = audio.currentTime;
+            let proximoIndice = -1;
+
+            for (let i = 0; i < legendas.length; i++) {
+                if (tempoAtual >= legendas[i].tempo) {
+                    proximoIndice = i;
+                }
+            }
+
+            if (proximoIndice !== indiceAtual && proximoIndice !== -1) {
+                indiceAtual = proximoIndice;
+                let elementoLetra = document.getElementById('letra-dinamica');
+                
+                elementoLetra.style.opacity = 0; 
+                
+                setTimeout(() => {
+                    elementoLetra.innerHTML = legendas[indiceAtual].texto; 
+                    elementoLetra.style.opacity = 1; 
+                }, 400); 
+            }
+        });
+    </script>
+</body>
+</html>
