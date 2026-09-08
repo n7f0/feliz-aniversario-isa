@@ -47,7 +47,6 @@
             flex-wrap: wrap;
         }
 
-        /* Card de capa (preto) */
         .card-capa {
             max-width: 450px;
             flex: 1 1 350px;
@@ -69,11 +68,10 @@
             transform: scale(1.02);
         }
 
-        /* Título SEM sombra rosa */
         h1 {
             color: #ffffff;
             font-size: 2.6em;
-            text-shadow: none; /* removido o rosa */
+            text-shadow: none;
             margin-top: 0;
             margin-bottom: 20px;
             line-height: 1.2;
@@ -126,11 +124,10 @@
             margin-top: 15px;
         }
 
-        /* Card da letra – estilo escuro combinando */
         .card-letra {
             max-width: 280px;
             flex: 1 1 200px;
-            background: rgba(0, 0, 0, 0.75); /* preto igual ao outro */
+            background: rgba(0, 0, 0, 0.75);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 30px 20px;
@@ -146,7 +143,7 @@
         #letra-dinamica {
             font-size: 1.4em;
             line-height: 1.6;
-            color: #ffb3c6; /* rosa claro para a letra, combinando com o tema */
+            color: #ffb3c6;
             font-style: italic;
             font-weight: 600;
             margin: 0;
@@ -166,7 +163,6 @@
             font-weight: bold;
         }
 
-        /* Título das fotos (sem rosa neon, mais neutro) */
         .titulo-fotos-card {
             display: inline-block;
             background: rgba(0, 0, 0, 0.6);
@@ -229,7 +225,6 @@
             font-weight: 600;
         }
 
-        /* Áudio escondido */
         #meuAudio {
             display: none;
         }
@@ -243,7 +238,6 @@
 
         <div class="container-capa-flex">
             
-            <!-- CARD DE CAPA -->
             <div class="card-capa" onclick="revelarSurpresa()">
                 <h1>FELIZ ANIVERSÁRIO ISA</h1>
                 <img src="foto_card.png" alt="Foto de Capa Isa">
@@ -254,7 +248,6 @@
                 <p class="dica-clique">(Toque na tela para a surpresa)</p>
             </div>
 
-            <!-- CARD DA LETRA (agora escuro) -->
             <div class="card-letra">
                 <div class="icone-musica">🎵</div>
                 <p id="letra-dinamica">...</p>
@@ -263,7 +256,6 @@
 
         </div>
 
-        <!-- Título das fotos -->
         <div class="titulo-fotos-card">
             <h3>📸 Nossos Melhores Momentos</h3>
         </div>
@@ -279,7 +271,6 @@
 
     </div>
 
-    <!-- Áudio escondido -->
     <audio id="meuAudio" preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio.
@@ -288,14 +279,10 @@
     <script>
         var audio = document.getElementById('meuAudio');
 
-        // 1. Tenta tocar automaticamente ao carregar
         window.addEventListener('load', function() {
-            audio.play().catch(function() {
-                // Se bloquear, não faz nada – o clique na página vai iniciar
-            });
+            audio.play().catch(function() {});
         });
 
-        // 2. Qualquer clique em qualquer lugar inicia a música (se estiver pausada)
         document.body.addEventListener('click', function() {
             if (audio.paused) {
                 audio.play().catch(function(e) {
@@ -304,13 +291,10 @@
             }
         });
 
-        // 3. Função da surpresa (texto escondido)
         function revelarSurpresa() {
             var texto = document.getElementById('texto-surpresa');
             var dica = document.querySelector('.dica-clique');
-            
             texto.classList.toggle('mostrar');
-            
             if (texto.classList.contains('mostrar')) {
                 dica.style.display = 'none';
             } else {
@@ -321,24 +305,61 @@
         }
 
         // ============================================================
-        // LETRA DA MÚSICA – substitua os tempos e textos pelos reais
+        // LETRA COMPLETA com tempos estimados (ajuste conforme seu áudio)
         // ============================================================
         var legendas = [
             { tempo: 0, texto: "🎵<br>..." },
-            { tempo: 14, texto: "Tudo vai ficar bem<br>As flores vão nascer de novo depois de amanhã" },
-            { tempo: 20, texto: "Porque o inverno tá passando<br>A chuva já tá estiando" },
-            // --- COLOQUE A LETRA COMPLETA AQUI (com os tempos certos) ---
-            { tempo: 25, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 34, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 42, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 50, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 58, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 65, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 75, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 85, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 95, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 105, texto: "Cole a próxima parte da letra aqui" },
-            { tempo: 115, texto: "🎵<br>..." } 
+            { tempo: 8, texto: "Tudo vai ficar bem" },
+            { tempo: 12, texto: "As flores vão nascer de novo depois de amanhã" },
+            { tempo: 18, texto: "Porque o inverno tá passando" },
+            { tempo: 22, texto: "A chuva já tá estiando" },
+            { tempo: 26, texto: "E o Sol voltou" },
+
+            { tempo: 30, texto: "Se quiser chorar, tudo bem" },
+            { tempo: 34, texto: "Meu ombro é seu travesseiro" },
+            { tempo: 38, texto: "Meu corpo, cobertor" },
+            { tempo: 42, texto: "Ninguém tá isento da dor" },
+            { tempo: 46, texto: "Mas diante do amor" },
+            { tempo: 50, texto: "Ela fica tão pequena, pequena" },
+
+            { tempo: 56, texto: "Pequena, não chore, não tenha medo" },
+            { tempo: 62, texto: "Isso é normal pra quem é de carne e osso" },
+            { tempo: 68, texto: "Não precisa fazer tanto esforço" },
+            { tempo: 74, texto: "Eu não sou diferente, também sou gente, já passei por isso" },
+            { tempo: 82, texto: "Se quiser, passo de novo com você" },
+            { tempo: 88, texto: "E se quer saber" },
+
+            { tempo: 92, texto: "Esse é o segredo" },
+            { tempo: 96, texto: "Desabafa, chora no meu peito" },
+            { tempo: 102, texto: "Mas me promete que amanhã bem cedo" },
+            { tempo: 108, texto: "Vai tá sorrindo como antigamente" },
+            { tempo: 114, texto: "Isso é normal, coisa que a gente sente" },
+
+            { tempo: 120, texto: "Desabafa, chora no meu peito" },
+            { tempo: 126, texto: "Mas me promete que amanhã bem cedo" },
+            { tempo: 132, texto: "Vai tá sorrindo como antigamente" },
+            { tempo: 138, texto: "Isso é normal, coisa que a gente sente" },
+
+            { tempo: 144, texto: "Pequena, não chore, não tenha medo" },
+            { tempo: 150, texto: "Isso é normal pra quem é de carne e osso" },
+            { tempo: 156, texto: "Não precisa fazer tanto esforço" },
+            { tempo: 162, texto: "Eu não sou diferente, também sou gente, já passei por isso" },
+            { tempo: 170, texto: "Se quiser, passo de novo com você" },
+            { tempo: 176, texto: "E se quer saber" },
+
+            { tempo: 180, texto: "Esse é o segredo" },
+            { tempo: 184, texto: "Desabafa, chora no meu peito" },
+            { tempo: 190, texto: "Mas me promete que amanhã bem cedo" },
+            { tempo: 196, texto: "Vai tá sorrindo como antigamente" },
+            { tempo: 202, texto: "Isso é normal, coisa que a gente sente" },
+
+            { tempo: 208, texto: "Desabafa, chora no meu peito" },
+            { tempo: 214, texto: "Mas me promete que amanhã bem cedo" },
+            { tempo: 220, texto: "Vai tá sorrindo como antigamente" },
+            { tempo: 226, texto: "Isso é normal, coisa que a gente sente" },
+            { tempo: 232, texto: "Pequena, eu tô aqui pra cuidar da gente" },
+
+            { tempo: 240, texto: "🎵<br>..." }
         ];
 
         var indiceAtual = -1;
@@ -356,13 +377,11 @@
             if (proximoIndice !== indiceAtual && proximoIndice !== -1) {
                 indiceAtual = proximoIndice;
                 let elementoLetra = document.getElementById('letra-dinamica');
-                
-                elementoLetra.style.opacity = 0; 
-                
+                elementoLetra.style.opacity = 0;
                 setTimeout(() => {
-                    elementoLetra.innerHTML = legendas[indiceAtual].texto; 
-                    elementoLetra.style.opacity = 1; 
-                }, 400); 
+                    elementoLetra.innerHTML = legendas[indiceAtual].texto;
+                    elementoLetra.style.opacity = 1;
+                }, 400);
             }
         });
     </script>
