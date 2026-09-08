@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Feliz Aniversário, Isa!</title>
     
-    <!-- Fonte fofa -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
@@ -16,22 +15,21 @@
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            
             font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
             color: #d84b7a;
             margin: 0;
-            padding: 0; 
+            padding: 0;
         }
 
         .barra-topo {
-            background: rgba(0, 0, 0, 0.4); 
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             width: 100%;
-            height: 80px; 
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); 
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+            height: 80px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 40px;
         }
 
@@ -39,7 +37,6 @@
             padding: 0 20px 40px 20px;
         }
 
-        /* Container dos cards lado a lado */
         .container-capa-flex {
             display: flex;
             justify-content: center;
@@ -47,27 +44,23 @@
             gap: 30px;
             max-width: 900px;
             margin: 0 auto 40px auto;
-            flex-wrap: wrap; 
+            flex-wrap: wrap;
         }
 
-        /* CARD DE CAPA PRINCIPAL (preto, sem rosa) */
+        /* Card de capa (preto) */
         .card-capa {
-            max-width: 450px; 
-            flex: 1 1 350px; 
-            
-            background: rgba(0, 0, 0, 0.75); 
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); 
-            
+            max-width: 450px;
+            flex: 1 1 350px;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 25px 25px 30px 25px;
             border-radius: 35px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
-            
             cursor: pointer;
             transition: transform 0.2s ease;
         }
@@ -76,10 +69,11 @@
             transform: scale(1.02);
         }
 
-        h1 { 
-            color: #ffffff; 
+        /* Título SEM sombra rosa */
+        h1 {
+            color: #ffffff;
             font-size: 2.6em;
-            text-shadow: 2px 2px 10px rgba(255, 51, 102, 0.3); 
+            text-shadow: none; /* removido o rosa */
             margin-top: 0;
             margin-bottom: 20px;
             line-height: 1.2;
@@ -107,7 +101,7 @@
             color: rgba(255, 255, 255, 0.6);
             margin-top: 10px;
             margin-bottom: 0;
-            animation: piscar 2s infinite; 
+            animation: piscar 2s infinite;
         }
 
         @keyframes piscar {
@@ -127,155 +121,98 @@
         }
 
         #texto-surpresa.mostrar {
-            max-height: 200px; 
+            max-height: 200px;
             opacity: 1;
             margin-top: 15px;
         }
 
-        /* Card da letra (rosa) */
+        /* Card da letra – estilo escuro combinando */
         .card-letra {
-            max-width: 280px; 
+            max-width: 280px;
             flex: 1 1 200px;
-            
-            background: rgba(255, 228, 242, 0.9);
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); 
-            
+            background: rgba(0, 0, 0, 0.75); /* preto igual ao outro */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 30px 20px;
             border-radius: 35px;
-            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2); 
-            border: 3px solid #ffb3c6; 
-            
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             flex-direction: column;
-            justify-content: center; 
+            justify-content: center;
             align-items: center;
         }
 
         #letra-dinamica {
             font-size: 1.4em;
             line-height: 1.6;
-            color: #ba2858;
+            color: #ffb3c6; /* rosa claro para a letra, combinando com o tema */
             font-style: italic;
             font-weight: 600;
             margin: 0;
-            transition: opacity 0.4s ease; 
+            transition: opacity 0.4s ease;
         }
 
         .icone-musica {
             font-size: 1.8em;
             margin-bottom: 15px;
-            color: #ff3366;
+            color: #ffb3c6;
         }
 
-        /* Container da mensagem (rosa) */
-        .container-mensagem {
-            max-width: 800px;
-            margin: 0 auto 50px auto; 
-            
-            background: rgba(255, 228, 242, 0.85);
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px); 
-            
-            padding: 35px 30px;
-            border-radius: 35px;
-            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.2);
-            border: 2px solid #ffb3c6; 
+        .card-letra .artista {
+            font-size: 0.75em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 20px;
+            font-weight: bold;
         }
 
-        .mensagem { 
-            font-size: 1.3em; 
-            line-height: 1.8; 
-            margin-top: 0;
-            margin-bottom: 30px;
-            color: #ba2858;
-            font-weight: 600;
-        }
-
-        .musica {
-            background: rgba(255, 255, 255, 0.7);
-            padding: 20px 30px;
-            border-radius: 20px;
-            margin: 0 auto;
-            border: 2px dashed #ffb3c6;
-            display: inline-block;
-            width: 80%; 
-        }
-
-        .musica h3 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-            color: #ff3366;
-        }
-
-        /* Player de áudio (visível para controle) */
-        audio {
-            width: 100%;
-            border-radius: 10px;
-            outline: none;
-            margin-top: 10px;
-        }
-
-        /* Mensagem de aviso para iniciar a música */
-        .aviso-autoplay {
-            font-size: 0.9em;
-            color: #ff3366;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 8px 15px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 10px;
-            animation: piscar 2s infinite;
-        }
-
-        /* Título das fotos (rosa) */
+        /* Título das fotos (sem rosa neon, mais neutro) */
         .titulo-fotos-card {
             display: inline-block;
-            background: rgba(255, 228, 242, 0.85);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 15px 40px;
             border-radius: 25px;
             margin-bottom: 40px;
-            border: 2px solid #ffb3c6;
-            box-shadow: 0 8px 20px rgba(255, 51, 102, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .titulo-fotos-card h3 { 
-            color: #ff3366; 
-            font-size: 1.8em; 
+        .titulo-fotos-card h3 {
+            color: #ffffff;
+            font-size: 1.8em;
             margin: 0;
         }
 
         .fotos {
             display: flex;
             justify-content: center;
-            gap: 30px; 
+            gap: 30px;
             flex-wrap: wrap;
             max-width: 1000px;
             margin: 0 auto;
         }
 
         .foto-card {
-            background: rgba(255, 228, 242, 0.85);
-            backdrop-filter: blur(10px); 
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 15px 15px 20px 15px;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(255, 51, 102, 0.15);
-            transition: all 0.3s ease; 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
             width: 220px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border: 2px solid #ffb3c6;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .foto-card:hover {
             transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(255, 51, 102, 0.4);
-            background: rgba(255, 228, 242, 1);
+            box-shadow: 0 15px 30px rgba(255, 51, 102, 0.3);
+            background: rgba(0, 0, 0, 0.8);
         }
 
         .foto-card img {
@@ -288,14 +225,13 @@
         .foto-card p {
             margin: 15px 0 0 0;
             font-size: 1.1em;
-            color: #d84b7a;
+            color: #ffb3c6;
             font-weight: 600;
         }
 
-        .erro-audio {
-            color: #cc0000;
-            font-weight: bold;
-            margin-top: 10px;
+        /* Áudio escondido */
+        #meuAudio {
+            display: none;
         }
     </style>
 </head>
@@ -318,42 +254,16 @@
                 <p class="dica-clique">(Toque na tela para a surpresa)</p>
             </div>
 
-            <!-- Card da letra -->
+            <!-- CARD DA LETRA (agora escuro) -->
             <div class="card-letra">
                 <div class="icone-musica">🎵</div>
                 <p id="letra-dinamica">...</p>
-                <span style="font-size: 0.75em; color: #ff3366; margin-top: 20px; font-weight: bold;">- Marília Mendonça</span>
+                <span class="artista">- Marília Mendonça</span>
             </div>
 
-        </div> 
-
-        <div class="container-mensagem">
-            <p class="mensagem">
-                Amiga, preparei esse cantinho super especial para celebrar o seu dia!<br>
-                Você é uma pessoa incrível e eu amo todos os nossos momentos juntas.<br>
-                Que o seu novo ano seja tão perfeito quanto a nossa amizade! 💕
-            </p>
-
-            <div class="musica">
-                <h3>🎶 Aumenta o som!</h3>
-                
-                <!-- Player de áudio (visível) -->
-                <audio id="meuAudio" controls>
-                    <source src="musica.mp3" type="audio/mpeg">
-                    Seu navegador não suporta áudio.
-                </audio>
-                
-                <!-- Aviso que aparece se o autoplay for bloqueado -->
-                <div id="avisoAutoplay" class="aviso-autoplay">
-                    🔇 Clique em qualquer lugar da página para iniciar a música
-                </div>
-                
-                <div id="erroAudio" class="erro-audio" style="display:none;">
-                    ⚠️ Arquivo de música não encontrado. Verifique se "musica.mp3" está na mesma pasta.
-                </div>
-            </div>
         </div>
 
+        <!-- Título das fotos -->
         <div class="titulo-fotos-card">
             <h3>📸 Nossos Melhores Momentos</h3>
         </div>
@@ -369,50 +279,32 @@
 
     </div>
 
+    <!-- Áudio escondido -->
+    <audio id="meuAudio" preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
     <script>
         var audio = document.getElementById('meuAudio');
-        var aviso = document.getElementById('avisoAutoplay');
-        var erroDiv = document.getElementById('erroAudio');
 
-        // 1. TENTA TOCAR AUTOMATICAMENTE ASSIM QUE A PÁGINA CARREGA
+        // 1. Tenta tocar automaticamente ao carregar
         window.addEventListener('load', function() {
-            var promessa = audio.play();
-            if (promessa !== undefined) {
-                promessa.then(function() {
-                    // Se tocou, esconde o aviso
-                    aviso.style.display = 'none';
-                }).catch(function(error) {
-                    // Se bloqueou, mostra o aviso
-                    aviso.style.display = 'inline-block';
-                    console.log("Autoplay bloqueado. Aguardando clique do usuário.");
-                });
-            }
+            audio.play().catch(function() {
+                // Se bloquear, não faz nada – o clique na página vai iniciar
+            });
         });
 
-        // 2. QUALQUER CLICK NA PÁGINA INICIA A MÚSICA (se estiver pausada)
+        // 2. Qualquer clique em qualquer lugar inicia a música (se estiver pausada)
         document.body.addEventListener('click', function() {
             if (audio.paused) {
-                audio.play().catch(function(err) {
-                    // Se der erro (ex: arquivo não encontrado), mostra erro
-                    erroDiv.style.display = 'block';
+                audio.play().catch(function(e) {
+                    console.log('Erro ao tocar:', e);
                 });
-                // Esconde o aviso após o clique
-                aviso.style.display = 'none';
             }
         });
 
-        // 3. Se a música terminar, não faz nada (apenas para não ficar repetindo)
-        audio.addEventListener('ended', function() {
-            // Opcional: mostrar algo
-        });
-
-        // 4. Mostra erro se o arquivo não carregar
-        audio.addEventListener('error', function() {
-            erroDiv.style.display = 'block';
-            aviso.style.display = 'none';
-        });
-
-        // 5. Função da surpresa (texto escondido)
+        // 3. Função da surpresa (texto escondido)
         function revelarSurpresa() {
             var texto = document.getElementById('texto-surpresa');
             var dica = document.querySelector('.dica-clique');
@@ -429,7 +321,7 @@
         }
 
         // ============================================================
-        // LETRA DA MÚSICA (substitua os placeholders pelos versos reais)
+        // LETRA DA MÚSICA – substitua os tempos e textos pelos reais
         // ============================================================
         var legendas = [
             { tempo: 0, texto: "🎵<br>..." },
