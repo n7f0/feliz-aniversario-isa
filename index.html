@@ -205,7 +205,7 @@
             box-shadow: 0 15px 30px rgba(255, 51, 102, 0.3);
             background: rgba(0, 0, 0, 0.8);
         }
-        /* Placeholder das fotos */
+        /* Placeholder das fotos (caso não tenha as imagens) */
         .foto-placeholder {
             width: 100%;
             height: 200px;
@@ -225,46 +225,52 @@
             color: #ffb3c6;
             font-weight: 600;
         }
-        /* Modal */
+
+        /* ===== MODAL (sem desfoque) ===== */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.7); /* fundo escuro sem blur */
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
         }
         .modal-overlay.ativo { display: flex; }
+
         .modal-box {
-            background: rgba(30, 30, 30, 0.95);
+            background: rgba(0, 0, 0, 0.85); /* fundo preto igual ao card principal */
             max-width: 500px;
             width: 90%;
-            padding: 40px 30px;
-            border-radius: 30px;
-            border: 2px solid #ffb3c6;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
-            position: relative;
+            padding: 25px 25px 30px 25px;
+            border-radius: 35px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+            text-align: center;
             animation: fadeIn 0.3s ease;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+
+        .modal-box img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
+
         .modal-box h2 {
             color: #ffb3c6;
             font-size: 1.8em;
-            margin-top: 0;
+            margin: 20px 0 10px 0;
         }
         .modal-box p {
-            color: #fff;
+            color: #ffffff;
             font-size: 1.2em;
             line-height: 1.6;
-            margin: 20px 0 30px;
+            margin: 10px 0 25px 0;
         }
         .modal-fechar {
             background: #ff3366;
@@ -278,7 +284,16 @@
             transition: 0.2s;
         }
         .modal-fechar:hover { background: #e62e5c; transform: scale(1.05); }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Áudio escondido */
         #meuAudio { display: none; }
+
+        /* Aviso flutuante */
         .aviso-clique {
             position: fixed;
             bottom: 30px;
@@ -298,6 +313,7 @@
             border: 2px solid #fff;
         }
         .aviso-clique.mostrar { display: block; }
+
         .som-status {
             position: fixed;
             top: 100px;
@@ -352,38 +368,44 @@
         </div>
         
         <div class="fotos">
-            <!-- FOTO 1 (placeholder) -->
+            <!-- FOTO 1 (placeholder ou imagem real) -->
             <div class="foto-card" onclick="abrirModal(1)">
-                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 1</div>
+                <img src="foto_card1.PNG" alt="Foto 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="foto-placeholder" style="display:none; background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 1</div>
                 <p>Clique para ler</p>
             </div>
-            <!-- FOTO 2 (placeholder) -->
+            <!-- FOTO 2 -->
             <div class="foto-card" onclick="abrirModal(2)">
-                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 2</div>
+                <img src="foto_card2.PNG" alt="Foto 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="foto-placeholder" style="display:none; background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 2</div>
                 <p>Clique para ler</p>
             </div>
-            <!-- FOTO 3 (placeholder) -->
+            <!-- FOTO 3 -->
             <div class="foto-card" onclick="abrirModal(3)">
-                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 3</div>
+                <img src="foto_card3.PNG" alt="Foto 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="foto-placeholder" style="display:none; background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 3</div>
                 <p>Clique para ler</p>
             </div>
-            <!-- FOTO 4 (placeholder) -->
+            <!-- FOTO 4 -->
             <div class="foto-card" onclick="abrirModal(4)">
-                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 4</div>
+                <img src="foto_card4.PNG" alt="Foto 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="foto-placeholder" style="display:none; background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 4</div>
                 <p>Clique para ler</p>
             </div>
-            <!-- FOTO 5 (placeholder) -->
+            <!-- FOTO 5 -->
             <div class="foto-card" onclick="abrirModal(5)">
-                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 5</div>
+                <img src="foto_card5.PNG" alt="Foto 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="foto-placeholder" style="display:none; background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 5</div>
                 <p>Clique para ler</p>
             </div>
         </div>
 
     </div>
 
-    <!-- Modal -->
+    <!-- ===== MODAL (sem desfoque, com imagem e texto) ===== -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-box">
+            <img id="modalImagem" src="" alt="Foto ampliada">
             <h2 id="modalTitulo">💕</h2>
             <p id="modalTexto">Mensagem especial...</p>
             <button class="modal-fechar" onclick="fecharModal()">Fechar</button>
@@ -569,7 +591,7 @@
             }
         });
 
-        // ======= MODAL DAS FOTOS =======
+        // ======= MODAL DAS FOTOS (com imagem) =======
         var mensagensFotos = {
             1: { titulo: "🌟 Primeiro clique", texto: "Essa foto é especial porque foi quando a gente se conheceu de verdade. Você já era incrível!" },
             2: { titulo: "🌻 Dias de sol", texto: "Lembro desse dia como se fosse ontem. Sua risada iluminou tudo ao redor." },
@@ -581,6 +603,16 @@
         function abrirModal(numero) {
             var dados = mensagensFotos[numero];
             if (!dados) return;
+            // Define a imagem (tenta .PNG, se não existir, usa o placeholder)
+            var imgSrc = 'foto_card' + numero + '.PNG';
+            document.getElementById('modalImagem').src = imgSrc;
+            // Se a imagem não carregar, mostra uma mensagem
+            document.getElementById('modalImagem').onerror = function() {
+                this.src = ''; // limpa
+                this.alt = 'Imagem não disponível';
+                this.style.display = 'none';
+                // Opcional: mostrar um placeholder no modal
+            };
             document.getElementById('modalTitulo').textContent = dados.titulo;
             document.getElementById('modalTexto').textContent = dados.texto;
             document.getElementById('modalOverlay').classList.add('ativo');
@@ -590,10 +622,12 @@
             document.getElementById('modalOverlay').classList.remove('ativo');
         }
 
+        // Fecha modal ao clicar fora do card
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
             if (e.target === this) fecharModal();
         });
 
+        // Fecha com tecla ESC
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') fecharModal();
         });
