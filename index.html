@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Feliz Aniversário, Isa!</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
-
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -24,7 +22,6 @@
             flex-direction: column;
             align-items: center;
         }
-
         .barra-topo {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
@@ -35,13 +32,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 40px;
         }
-
         .conteudo-principal {
             padding: 0 20px 40px 20px;
             width: 100%;
             max-width: 1200px;
         }
-
         .container-capa-flex {
             display: flex;
             justify-content: center;
@@ -51,7 +46,6 @@
             margin: 0 auto 40px auto;
             flex-wrap: wrap;
         }
-
         .card-capa {
             max-width: 450px;
             flex: 1 1 350px;
@@ -68,9 +62,7 @@
             cursor: pointer;
             transition: transform 0.2s ease;
         }
-
         .card-capa:hover { transform: scale(1.02); }
-
         h1 {
             color: #ffffff;
             font-size: 2.6em;
@@ -79,7 +71,6 @@
             margin-bottom: 20px;
             line-height: 1.2;
         }
-
         .card-capa img {
             width: 100%;
             height: auto;
@@ -88,7 +79,6 @@
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
-
         .legenda-capa {
             margin: 20px 0 0 0;
             font-size: 1.4em;
@@ -96,7 +86,6 @@
             font-weight: 600;
             font-style: italic;
         }
-
         .dica-clique {
             font-size: 0.9em;
             color: rgba(255, 255, 255, 0.6);
@@ -104,13 +93,11 @@
             margin-bottom: 0;
             animation: piscar 2s infinite;
         }
-
         @keyframes piscar {
             0% { opacity: 0.4; }
             50% { opacity: 1; }
             100% { opacity: 0.4; }
         }
-
         #texto-surpresa {
             max-height: 0;
             opacity: 0;
@@ -120,13 +107,11 @@
             font-size: 1.1em;
             line-height: 1.5;
         }
-
         #texto-surpresa.mostrar {
             max-height: 200px;
             opacity: 1;
             margin-top: 15px;
         }
-
         .card-letra {
             max-width: 280px;
             flex: 1 1 200px;
@@ -143,7 +128,6 @@
             align-items: center;
             position: relative;
         }
-
         #letra-dinamica {
             font-size: 1.4em;
             line-height: 1.6;
@@ -153,20 +137,17 @@
             margin: 0;
             transition: opacity 0.4s ease;
         }
-
         .icone-musica {
             font-size: 1.8em;
             margin-bottom: 15px;
             color: #ffb3c6;
         }
-
         .card-letra .artista {
             font-size: 0.75em;
             color: rgba(255, 255, 255, 0.6);
             margin-top: 20px;
             font-weight: bold;
         }
-
         .btn-sync {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -179,10 +160,7 @@
             transition: 0.3s;
             font-family: 'Fredoka', sans-serif;
         }
-        .btn-sync:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
+        .btn-sync:hover { background: rgba(255, 255, 255, 0.3); }
         .titulo-fotos-card {
             display: inline-block;
             background: rgba(0, 0, 0, 0.6);
@@ -194,13 +172,11 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
-
         .titulo-fotos-card h3 {
             color: #ffffff;
             font-size: 1.8em;
             margin: 0;
         }
-
         .fotos {
             display: flex;
             justify-content: center;
@@ -209,7 +185,6 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-
         .foto-card {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
@@ -225,27 +200,31 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             cursor: pointer;
         }
-
         .foto-card:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 15px 30px rgba(255, 51, 102, 0.3);
             background: rgba(0, 0, 0, 0.8);
         }
-
-        .foto-card img {
+        /* Placeholder das fotos */
+        .foto-placeholder {
             width: 100%;
             height: 200px;
-            object-fit: cover;
             border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffb3c6, #ff6b8a);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-
         .foto-card p {
             margin: 15px 0 0 0;
             font-size: 1.1em;
             color: #ffb3c6;
             font-weight: 600;
         }
-
         /* Modal */
         .modal-overlay {
             position: fixed;
@@ -299,11 +278,7 @@
             transition: 0.2s;
         }
         .modal-fechar:hover { background: #e62e5c; transform: scale(1.05); }
-
-        /* Áudio escondido */
         #meuAudio { display: none; }
-
-        /* Aviso flutuante */
         .aviso-clique {
             position: fixed;
             bottom: 30px;
@@ -323,7 +298,6 @@
             border: 2px solid #fff;
         }
         .aviso-clique.mostrar { display: block; }
-
         .som-status {
             position: fixed;
             top: 100px;
@@ -373,35 +347,34 @@
 
         </div>
 
-        <!-- Título das fotos -->
         <div class="titulo-fotos-card">
             <h3>📸 As fotos que eu mais amo de você</h3>
         </div>
         
         <div class="fotos">
-            <!-- FOTO 1 -->
+            <!-- FOTO 1 (placeholder) -->
             <div class="foto-card" onclick="abrirModal(1)">
-                <img src="foto_card1.PNG" alt="Foto 1">
+                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 1</div>
                 <p>Clique para ler</p>
             </div>
-            <!-- FOTO 2 -->
+            <!-- FOTO 2 (placeholder) -->
             <div class="foto-card" onclick="abrirModal(2)">
-                <img src="foto_card2.PNG" alt="Foto 2">
+                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 2</div>
                 <p>Clique para ler</p>
             </div>
-            <!-- FOTO 3 -->
+            <!-- FOTO 3 (placeholder) -->
             <div class="foto-card" onclick="abrirModal(3)">
-                <img src="foto_card3.PNG" alt="Foto 3">
+                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 3</div>
                 <p>Clique para ler</p>
             </div>
-            <!-- FOTO 4 -->
+            <!-- FOTO 4 (placeholder) -->
             <div class="foto-card" onclick="abrirModal(4)">
-                <img src="foto_card4.PNG" alt="Foto 4">
+                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 4</div>
                 <p>Clique para ler</p>
             </div>
-            <!-- FOTO 5 -->
+            <!-- FOTO 5 (placeholder) -->
             <div class="foto-card" onclick="abrirModal(5)">
-                <img src="foto_card5.PNG" alt="Foto 5">
+                <div class="foto-placeholder" style="background:linear-gradient(135deg, #ffb3c6, #ff6b8a);">📷 5</div>
                 <p>Clique para ler</p>
             </div>
         </div>
@@ -426,9 +399,7 @@
     <div class="som-status mudo" id="somStatus">🔇</div>
 
     <script>
-        // ========================================================
-        // 1. ÁUDIO E AUTOPLAY
-        // ========================================================
+        // ======= ÁUDIO =======
         var audio = document.getElementById('meuAudio');
         var aviso = document.getElementById('avisoClique');
         var statusIcon = document.getElementById('somStatus');
@@ -492,9 +463,7 @@
             statusIcon.textContent = '⛔';
         });
 
-        // ========================================================
-        // 2. SURPRESA
-        // ========================================================
+        // ======= SURPRESA =======
         function revelarSurpresa() {
             var texto = document.getElementById('texto-surpresa');
             var dica = document.querySelector('.dica-clique');
@@ -506,9 +475,7 @@
             }
         }
 
-        // ========================================================
-        // 3. LETRA DA MÚSICA
-        // ========================================================
+        // ======= LETRA =======
         var legendas = [
             { tempo: 0, texto: "🎵<br>..." },
             { tempo: 8, texto: "Tudo vai ficar bem" },
@@ -516,51 +483,43 @@
             { tempo: 18, texto: "Porque o inverno tá passando" },
             { tempo: 22, texto: "A chuva já tá estiando" },
             { tempo: 26, texto: "E o Sol voltou" },
-
             { tempo: 30, texto: "Se quiser chorar, tudo bem" },
             { tempo: 34, texto: "Meu ombro é seu travesseiro" },
             { tempo: 38, texto: "Meu corpo, cobertor" },
             { tempo: 42, texto: "Ninguém tá isento da dor" },
             { tempo: 46, texto: "Mas diante do amor" },
             { tempo: 50, texto: "Ela fica tão pequena, pequena" },
-
             { tempo: 56, texto: "Pequena, não chore, não tenha medo" },
             { tempo: 62, texto: "Isso é normal pra quem é de carne e osso" },
             { tempo: 68, texto: "Não precisa fazer tanto esforço" },
             { tempo: 74, texto: "Eu não sou diferente, também sou gente, já passei por isso" },
             { tempo: 82, texto: "Se quiser, passo de novo com você" },
             { tempo: 88, texto: "E se quer saber" },
-
             { tempo: 92, texto: "Esse é o segredo" },
             { tempo: 96, texto: "Desabafa, chora no meu peito" },
             { tempo: 102, texto: "Mas me promete que amanhã bem cedo" },
             { tempo: 108, texto: "Vai tá sorrindo como antigamente" },
             { tempo: 114, texto: "Isso é normal, coisa que a gente sente" },
-
             { tempo: 120, texto: "Desabafa, chora no meu peito" },
             { tempo: 126, texto: "Mas me promete que amanhã bem cedo" },
             { tempo: 132, texto: "Vai tá sorrindo como antigamente" },
             { tempo: 138, texto: "Isso é normal, coisa que a gente sente" },
-
             { tempo: 144, texto: "Pequena, não chore, não tenha medo" },
             { tempo: 150, texto: "Isso é normal pra quem é de carne e osso" },
             { tempo: 156, texto: "Não precisa fazer tanto esforço" },
             { tempo: 162, texto: "Eu não sou diferente, também sou gente, já passei por isso" },
             { tempo: 170, texto: "Se quiser, passo de novo com você" },
             { tempo: 176, texto: "E se quer saber" },
-
             { tempo: 180, texto: "Esse é o segredo" },
             { tempo: 184, texto: "Desabafa, chora no meu peito" },
             { tempo: 190, texto: "Mas me promete que amanhã bem cedo" },
             { tempo: 196, texto: "Vai tá sorrindo como antigamente" },
             { tempo: 202, texto: "Isso é normal, coisa que a gente sente" },
-
             { tempo: 208, texto: "Desabafa, chora no meu peito" },
             { tempo: 214, texto: "Mas me promete que amanhã bem cedo" },
             { tempo: 220, texto: "Vai tá sorrindo como antigamente" },
             { tempo: 226, texto: "Isso é normal, coisa que a gente sente" },
             { tempo: 232, texto: "Pequena, eu tô aqui pra cuidar da gente" },
-
             { tempo: 240, texto: "🎵<br>..." }
         ];
 
@@ -585,9 +544,7 @@
             }
         });
 
-        // ========================================================
-        // 4. AJUSTE DE SINCRONIA
-        // ========================================================
+        // ======= AJUSTE DE SINCRONIA =======
         document.getElementById('btnSync').addEventListener('click', function() {
             if (audio.paused) {
                 alert('A música está pausada. Dê play primeiro.');
@@ -612,9 +569,7 @@
             }
         });
 
-        // ========================================================
-        // 5. MODAL DAS FOTOS
-        // ========================================================
+        // ======= MODAL DAS FOTOS =======
         var mensagensFotos = {
             1: { titulo: "🌟 Primeiro clique", texto: "Essa foto é especial porque foi quando a gente se conheceu de verdade. Você já era incrível!" },
             2: { titulo: "🌻 Dias de sol", texto: "Lembro desse dia como se fosse ontem. Sua risada iluminou tudo ao redor." },
