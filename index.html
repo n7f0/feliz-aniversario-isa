@@ -294,10 +294,7 @@
 
         #meuAudio { display: none; }
 
-        /* Ocultando o aviso permanentemente */
-        .aviso-clique {
-            display: none !important;
-        }
+        .aviso-clique { display: none !important; }
 
         .som-status {
             position: fixed;
@@ -336,7 +333,6 @@
                 <p class="dica-clique">(Toque na tela para a surpresa)</p>
             </div>
 
-            <!-- Card da música limpo (sem botão de sincronia) -->
             <div class="card-letra">
                 <div class="icone-musica">🎵</div>
                 <p id="letra-dinamica">...</p>
@@ -354,7 +350,7 @@
             <div class="foto-card" onclick="abrirModal(1)">
                 <div class="foto-img" id="imgContainer1">
                     <span class="fallback visible">📷 1</span>
-                    <img src="foto_card1.PNG" alt="Foto 1" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    <img src="foto_card 1.png" alt="Foto 1" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
                 <p>Clique para ler</p>
             </div>
@@ -362,7 +358,7 @@
             <div class="foto-card" onclick="abrirModal(2)">
                 <div class="foto-img" id="imgContainer2">
                     <span class="fallback visible">📷 2</span>
-                    <img src="foto_card2.PNG" alt="Foto 2" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    <img src="foto_card 2.png" alt="Foto 2" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
                 <p>Clique para ler</p>
             </div>
@@ -370,7 +366,7 @@
             <div class="foto-card" onclick="abrirModal(3)">
                 <div class="foto-img" id="imgContainer3">
                     <span class="fallback visible">📷 3</span>
-                    <img src="foto_card3.PNG" alt="Foto 3" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    <img src="foto_card 3.png" alt="Foto 3" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
                 <p>Clique para ler</p>
             </div>
@@ -378,7 +374,7 @@
             <div class="foto-card" onclick="abrirModal(4)">
                 <div class="foto-img" id="imgContainer4">
                     <span class="fallback visible">📷 4</span>
-                    <img src="foto_card4.PNG" alt="Foto 4" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    <img src="foto_card 4.png" alt="Foto 4" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
                 <p>Clique para ler</p>
             </div>
@@ -386,7 +382,7 @@
             <div class="foto-card" onclick="abrirModal(5)">
                 <div class="foto-img" id="imgContainer5">
                     <span class="fallback visible">📷 5</span>
-                    <img src="foto_card5.PNG" alt="Foto 5" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    <img src="foto_card 5.png" alt="Foto 5" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
                 <p>Clique para ler</p>
             </div>
@@ -556,7 +552,7 @@
         function abrirModal(numero) {
             var dados = mensagensFotos[numero];
             if (!dados) return;
-            var imgSrc = 'foto_card' + numero + '.PNG';
+            var imgSrc = 'foto_card ' + numero + '.png';
             var modalImg = document.getElementById('modalImagem');
             modalImg.src = imgSrc;
             modalImg.onerror = function() {
