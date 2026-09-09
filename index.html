@@ -103,13 +103,14 @@
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transition: max-height 0.6s ease, opacity 0.6s ease, margin-top 0.6s ease;
+            transition: max-height 0.8s ease, opacity 0.8s ease, margin-top 0.8s ease;
             color: #ffffff;
-            font-size: 1.4em; /* Texto maior */
-            line-height: 1.5;
+            font-size: 1.05em;
+            line-height: 1.6;
+            text-align: left;
         }
         #texto-surpresa.mostrar {
-            max-height: 250px;
+            max-height: 3000px;
             opacity: 1;
             margin-top: 15px;
         }
@@ -290,24 +291,22 @@
         .rodape-fofo {
             width: 100%;
             margin-top: 30px;
-            padding: 28px 20px calc(34px + env(safe-area-inset-bottom)) 20px;
-            background: linear-gradient(180deg, rgba(255, 143, 171, 0.25), rgba(0, 0, 0, 0.55));
+            background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-top: 3px solid #ffb3c6;
-            border-radius: 30px 30px 0 0;
+            height: 80px;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
         }
         .rodape-fofo p {
-            color: #ffe3ec;
-            font-size: 1.25em;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        .rodape-emojis {
+            color: #ffb3c6;
             font-size: 1.6em;
-            display: inline-block;
-            animation: piscar 2.5s infinite;
+            font-weight: 600;
+            margin: 0;
         }
 
         @media (max-width: 480px) {
@@ -333,7 +332,9 @@
                 <img src="foto_card.png" alt="Foto de Capa Isa">
                 <p class="legenda-capa">A aniversáriante mais linda desse universo!</p>
                 <div id="texto-surpresa">
-                    Você é muito especial para mim! Aproveite muito o seu dia, pois você merece o mundo inteiro. Que este novo ano seja repleto de amor, paz e muitas conquistas. ❤️
+                    Feliz aniversário, linda! ❤️🎂<br><br>
+                    Hoje é o seu dia, e eu queria te desejar tudo de melhor que a vida possa oferecer. Que esse novo ciclo seja cheio de momentos incríveis, felicidade, conquistas, paz e pessoas que façam você se sentir tão especial quanto realmente é. E, sinceramente, essa foto diz muito sobre você. Tem uma beleza nela que vai muito além da aparência. O jeito espontâneo, o olhar escondido atrás do celular, o sorriso que a gente quase consegue imaginar e toda a delicadeza da foto passam uma sensação de elegância, charme e naturalidade. Você simplesmente fica linda sem precisar tentar.<br><br>
+                    Tem algo nessa imagem que chama atenção justamente por parecer tão genuíno. A iluminação mais quente deixa tudo com um ar aconchegante, enquanto você acaba sendo o destaque da foto. O vestido, o cabelo e os pequenos detalhes completam uma aparência muito elegante, mas o que mais chama atenção é a delicadeza e a presença que você transmite. Espero que você nunca deixe de enxergar em si mesma toda essa beleza que os outros conseguem perceber. Que seu aniversário seja tão especial quanto você é. Parabéns, princesa. ❤️✨
                 </div>
                 <p class="dica-clique">(Toque na tela para a surpresa)</p>
             </div>
@@ -396,8 +397,7 @@
     </div>
 
     <footer class="rodape-fofo">
-        <p>feito com 💗 especialmente para você</p>
-        <span class="rodape-emojis">🎀 🌸 ✨</span>
+        <p>EU TE AMO ❤️</p>
     </footer>
 
     <!-- Modal -->
@@ -518,11 +518,11 @@
 
         // ======= MODAL DAS FOTOS =======
         var mensagensFotos = {
-            1: { titulo: "🌟 Primeiro clique", texto: "Essa foto é especial porque foi quando a gente se conheceu de verdade. Você já era incrível!" },
-            2: { titulo: "🌻 Dias de sol", texto: "Lembro desse dia como se fosse ontem. Sua risada iluminou tudo ao redor." },
-            3: { titulo: "💖 Cumplicidade", texto: "Nessa foto a gente já era mais que amigas, era alma gêmea. Te amo!" },
-            4: { titulo: "🌈 Aventura", texto: "Viajar com você é sempre mágico. Cada momento ao seu lado é inesquecível." },
-            5: { titulo: "✨ Pra sempre", texto: "Essa é a nossa cara: felizes, bagunceiras e unidas. Que venham muitos anos assim!" }
+            1: { titulo: "🌟", texto: "E essa foto só mostra o quanto você é linda, delicada e encantadora. ✨ Espero que seu dia seja tão especial quanto você! 💕" },
+            2: { titulo: "🌻", texto: "Essa versão sua tão fofinha e encantadora, com um jeitinho alegre e inocente que deixa a foto ainda mais especial." },
+            3: { titulo: "💖", texto: "Essa foto transmite uma beleza leve, confiante e cheia de personalidade. ✨" },
+            4: { titulo: "🌈", texto: "Você é uma doçura e uma felicidade que deixam impossível não sorrir junto. 🥰✨" },
+            5: { titulo: "✨", texto: "Você é uma mulher elegante, mas é o seu sorriso que realmente faz ela ficar especial. ✨💙" }
         };
 
         function abrirModal(numero) {
