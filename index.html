@@ -213,18 +213,6 @@
             object-fit: cover;
             display: block;
         }
-        .foto-img .fallback {
-            display: none;
-            position: absolute;
-            font-size: 3em;
-            color: white;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            pointer-events: none;
-        }
-        .foto-img img.hidden { display: none; }
-        .foto-img .fallback.visible { display: block; }
-
         .foto-card p {
             margin: 15px 0 0 0;
             font-size: 1.1em;
@@ -350,40 +338,40 @@
             <!-- FOTO 1 -->
             <div class="foto-card" onclick="abrirModal(1)">
                 <div class="foto-img" id="imgContainer1">
-                    <span class="fallback">📷 1</span>
-                    <img src="foto_card_1.png" alt="Foto 1" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    
+                    <img src="foto_card_1.png" alt="Foto 1" onerror="this.style.display='none';">
                 </div>
                 <p>Clique para ler</p>
             </div>
             <!-- FOTO 2 -->
             <div class="foto-card" onclick="abrirModal(2)">
                 <div class="foto-img" id="imgContainer2">
-                    <span class="fallback">📷 2</span>
-                    <img src="foto_card_2.png" alt="Foto 2" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    
+                    <img src="foto_card_2.png" alt="Foto 2" onerror="this.style.display='none';">
                 </div>
                 <p>Clique para ler</p>
             </div>
             <!-- FOTO 3 -->
             <div class="foto-card" onclick="abrirModal(3)">
                 <div class="foto-img" id="imgContainer3">
-                    <span class="fallback">📷 3</span>
-                    <img src="foto_card_3.png" alt="Foto 3" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    
+                    <img src="foto_card_3.png" alt="Foto 3" onerror="this.style.display='none';">
                 </div>
                 <p>Clique para ler</p>
             </div>
             <!-- FOTO 4 -->
             <div class="foto-card" onclick="abrirModal(4)">
                 <div class="foto-img" id="imgContainer4">
-                    <span class="fallback">📷 4</span>
-                    <img src="foto_card_4.png" alt="Foto 4" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    
+                    <img src="foto_card_4.png" alt="Foto 4" onerror="this.style.display='none';">
                 </div>
                 <p>Clique para ler</p>
             </div>
             <!-- FOTO 5 -->
             <div class="foto-card" onclick="abrirModal(5)">
                 <div class="foto-img" id="imgContainer5">
-                    <span class="fallback">📷 5</span>
-                    <img src="foto_card_5.png" alt="Foto 5" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
+                    
+                    <img src="foto_card_5.png" alt="Foto 5" onerror="this.style.display='none';">
                 </div>
                 <p>Clique para ler</p>
             </div>
