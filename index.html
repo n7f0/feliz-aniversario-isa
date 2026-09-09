@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Feliz Aniversário, Isa!</title>
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
-
     <style>
+        /* (mesmo CSS de antes, mantido igual) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fundo_site.png');
@@ -24,7 +23,6 @@
             flex-direction: column;
             align-items: center;
         }
-
         .barra-topo {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(10px);
@@ -35,13 +33,11 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 40px;
         }
-
         .conteudo-principal {
             padding: 0 20px 40px 20px;
             width: 100%;
             max-width: 1200px;
         }
-
         .container-capa-flex {
             display: flex;
             justify-content: center;
@@ -51,7 +47,6 @@
             margin: 0 auto 40px auto;
             flex-wrap: wrap;
         }
-
         .card-capa {
             max-width: 450px;
             flex: 1 1 350px;
@@ -68,9 +63,7 @@
             cursor: pointer;
             transition: transform 0.2s ease;
         }
-
         .card-capa:hover { transform: scale(1.02); }
-
         h1 {
             color: #ffffff;
             font-size: 2.6em;
@@ -79,7 +72,6 @@
             margin-bottom: 20px;
             line-height: 1.2;
         }
-
         .card-capa img {
             width: 100%;
             height: auto;
@@ -88,7 +80,6 @@
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
-
         .legenda-capa {
             margin: 20px 0 0 0;
             font-size: 1.4em;
@@ -96,7 +87,6 @@
             font-weight: 600;
             font-style: italic;
         }
-
         .dica-clique {
             font-size: 0.9em;
             color: rgba(255, 255, 255, 0.6);
@@ -104,13 +94,11 @@
             margin-bottom: 0;
             animation: piscar 2s infinite;
         }
-
         @keyframes piscar {
             0% { opacity: 0.4; }
             50% { opacity: 1; }
             100% { opacity: 0.4; }
         }
-
         #texto-surpresa {
             max-height: 0;
             opacity: 0;
@@ -120,13 +108,11 @@
             font-size: 1.1em;
             line-height: 1.5;
         }
-
         #texto-surpresa.mostrar {
             max-height: 200px;
             opacity: 1;
             margin-top: 15px;
         }
-
         .card-letra {
             max-width: 280px;
             flex: 1 1 200px;
@@ -142,7 +128,6 @@
             justify-content: center;
             align-items: center;
         }
-
         #letra-dinamica {
             font-size: 1.4em;
             line-height: 1.6;
@@ -152,20 +137,17 @@
             margin: 0;
             transition: opacity 0.4s ease;
         }
-
         .icone-musica {
             font-size: 1.8em;
             margin-bottom: 15px;
             color: #ffb3c6;
         }
-
         .card-letra .artista {
             font-size: 0.75em;
             color: rgba(255, 255, 255, 0.6);
             margin-top: 20px;
             font-weight: bold;
         }
-
         .titulo-fotos-card {
             display: inline-block;
             background: rgba(0, 0, 0, 0.6);
@@ -177,13 +159,11 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
-
         .titulo-fotos-card h3 {
             color: #ffffff;
             font-size: 1.8em;
             margin: 0;
         }
-
         .fotos {
             display: flex;
             justify-content: center;
@@ -192,7 +172,6 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-
         .foto-card {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
@@ -207,31 +186,24 @@
             align-items: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         .foto-card:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 15px 30px rgba(255, 51, 102, 0.3);
             background: rgba(0, 0, 0, 0.8);
         }
-
         .foto-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-radius: 12px;
         }
-
         .foto-card p {
             margin: 15px 0 0 0;
             font-size: 1.1em;
             color: #ffb3c6;
             font-weight: 600;
         }
-
-        /* Áudio escondido */
         #meuAudio { display: none; }
-
-        /* Aviso de "clique para tocar" */
         .aviso-clique {
             position: fixed;
             bottom: 30px;
@@ -246,16 +218,11 @@
             box-shadow: 0 8px 25px rgba(255, 51, 102, 0.5);
             z-index: 999;
             animation: piscar 1.5s infinite;
-            display: none; /* oculto por padrão, aparece se precisar */
-            pointer-events: none; /* não bloqueia cliques */
+            display: none;
+            pointer-events: none;
             border: 2px solid #fff;
         }
-
-        .aviso-clique.mostrar {
-            display: block;
-        }
-
-        /* Ícone de som no canto */
+        .aviso-clique.mostrar { display: block; }
         .som-status {
             position: fixed;
             top: 100px;
@@ -282,7 +249,6 @@
     <div class="conteudo-principal">
 
         <div class="container-capa-flex">
-            
             <div class="card-capa" onclick="revelarSurpresa()">
                 <h1>FELIZ ANIVERSÁRIO ISA</h1>
                 <img src="foto_card.png" alt="Foto de Capa Isa">
@@ -298,13 +264,9 @@
                 <p id="letra-dinamica">...</p>
                 <span class="artista">- Marília Mendonça</span>
             </div>
-
         </div>
 
-        <div class="titulo-fotos-card">
-            <h3>📸 Nossos Melhores Momentos</h3>
-        </div>
-        
+        <div class="titulo-fotos-card"><h3>📸 Nossos Melhores Momentos</h3></div>
         <div class="fotos">
             <div class="foto-card"><img src="foto1.jpg" alt="Foto 1"><p>Dia inesquecível!</p></div>
             <div class="foto-card"><img src="foto2.jpg" alt="Foto 2"><p>Nossa viagem ✈️</p></div>
@@ -316,16 +278,12 @@
 
     </div>
 
-    <!-- Áudio escondido -->
     <audio id="meuAudio" preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio.
     </audio>
 
-    <!-- Aviso flutuante -->
     <div class="aviso-clique" id="avisoClique">🔊 Clique em qualquer lugar para ouvir a música</div>
-
-    <!-- Ícone de status do som -->
     <div class="som-status mudo" id="somStatus">🔇</div>
 
     <script>
@@ -333,16 +291,13 @@
         var aviso = document.getElementById('avisoClique');
         var statusIcon = document.getElementById('somStatus');
 
-        // Função para iniciar a música
         function iniciarMusica() {
             if (audio.paused) {
                 audio.play().then(() => {
-                    // Tocou com sucesso
                     aviso.classList.remove('mostrar');
                     statusIcon.className = 'som-status tocando';
                     statusIcon.textContent = '🔊';
                 }).catch((err) => {
-                    // Se falhou (ex: arquivo não encontrado)
                     statusIcon.className = 'som-status mudo';
                     statusIcon.textContent = '⛔';
                     aviso.textContent = '⚠️ Arquivo de música não encontrado!';
@@ -352,17 +307,14 @@
             }
         }
 
-        // 1. Tenta tocar automaticamente ao carregar
         window.addEventListener('load', function() {
             var promessa = audio.play();
             if (promessa !== undefined) {
                 promessa.then(() => {
-                    // Autoplay permitido!
                     aviso.classList.remove('mostrar');
                     statusIcon.className = 'som-status tocando';
                     statusIcon.textContent = '🔊';
                 }).catch(() => {
-                    // Autoplay bloqueado – mostra aviso
                     aviso.classList.add('mostrar');
                     statusIcon.className = 'som-status mudo';
                     statusIcon.textContent = '🔇';
@@ -370,24 +322,19 @@
             }
         });
 
-        // 2. QUALQUER CLIQUE na página inicia a música (se estiver pausada)
         document.body.addEventListener('click', function(e) {
-            // Se não está tocando, tenta iniciar
             if (audio.paused) {
                 iniciarMusica();
             }
         });
 
-        // 3. Quando a música começar a tocar (evento play), esconde aviso
         audio.addEventListener('play', function() {
             aviso.classList.remove('mostrar');
             statusIcon.className = 'som-status tocando';
             statusIcon.textContent = '🔊';
         });
 
-        // 4. Quando pausar (sem ser por erro), mostra aviso novamente
         audio.addEventListener('pause', function() {
-            // Só mostra o aviso se não for porque a música terminou
             if (audio.currentTime < audio.duration) {
                 aviso.classList.add('mostrar');
                 statusIcon.className = 'som-status mudo';
@@ -395,14 +342,12 @@
             }
         });
 
-        // 5. Quando terminar, aviso volta
         audio.addEventListener('ended', function() {
             aviso.classList.add('mostrar');
             statusIcon.className = 'som-status mudo';
             statusIcon.textContent = '🔇';
         });
 
-        // 6. Se der erro no carregamento do áudio
         audio.addEventListener('error', function() {
             aviso.textContent = '⚠️ Arquivo "musica.mp3" não encontrado!';
             aviso.classList.add('mostrar');
@@ -410,7 +355,6 @@
             statusIcon.textContent = '⛔';
         });
 
-        // Função da surpresa (texto escondido)
         function revelarSurpresa() {
             var texto = document.getElementById('texto-surpresa');
             var dica = document.querySelector('.dica-clique');
@@ -425,60 +369,63 @@
         }
 
         // ============================================================
-        // LETRA COMPLETA com tempos estimados (ajuste conforme seu áudio)
+        // LETRA COMPLETA com tempos estimados (baseado em ~2min40s)
+        // Se sua música for mais longa, aumente os tempos.
+        // Para ajustar: ouça a música, anote os segundos e edite.
         // ============================================================
         var legendas = [
             { tempo: 0, texto: "🎵<br>..." },
-            { tempo: 8, texto: "Tudo vai ficar bem" },
-            { tempo: 12, texto: "As flores vão nascer de novo depois de amanhã" },
-            { tempo: 18, texto: "Porque o inverno tá passando" },
-            { tempo: 22, texto: "A chuva já tá estiando" },
-            { tempo: 26, texto: "E o Sol voltou" },
-
-            { tempo: 30, texto: "Se quiser chorar, tudo bem" },
-            { tempo: 34, texto: "Meu ombro é seu travesseiro" },
-            { tempo: 38, texto: "Meu corpo, cobertor" },
-            { tempo: 42, texto: "Ninguém tá isento da dor" },
-            { tempo: 46, texto: "Mas diante do amor" },
-            { tempo: 50, texto: "Ela fica tão pequena, pequena" },
-
-            { tempo: 56, texto: "Pequena, não chore, não tenha medo" },
-            { tempo: 62, texto: "Isso é normal pra quem é de carne e osso" },
-            { tempo: 68, texto: "Não precisa fazer tanto esforço" },
-            { tempo: 74, texto: "Eu não sou diferente, também sou gente, já passei por isso" },
-            { tempo: 82, texto: "Se quiser, passo de novo com você" },
-            { tempo: 88, texto: "E se quer saber" },
-
-            { tempo: 92, texto: "Esse é o segredo" },
-            { tempo: 96, texto: "Desabafa, chora no meu peito" },
-            { tempo: 102, texto: "Mas me promete que amanhã bem cedo" },
-            { tempo: 108, texto: "Vai tá sorrindo como antigamente" },
-            { tempo: 114, texto: "Isso é normal, coisa que a gente sente" },
-
-            { tempo: 120, texto: "Desabafa, chora no meu peito" },
-            { tempo: 126, texto: "Mas me promete que amanhã bem cedo" },
-            { tempo: 132, texto: "Vai tá sorrindo como antigamente" },
-            { tempo: 138, texto: "Isso é normal, coisa que a gente sente" },
-
-            { tempo: 144, texto: "Pequena, não chore, não tenha medo" },
-            { tempo: 150, texto: "Isso é normal pra quem é de carne e osso" },
-            { tempo: 156, texto: "Não precisa fazer tanto esforço" },
-            { tempo: 162, texto: "Eu não sou diferente, também sou gente, já passei por isso" },
-            { tempo: 170, texto: "Se quiser, passo de novo com você" },
-            { tempo: 176, texto: "E se quer saber" },
-
-            { tempo: 180, texto: "Esse é o segredo" },
-            { tempo: 184, texto: "Desabafa, chora no meu peito" },
-            { tempo: 190, texto: "Mas me promete que amanhã bem cedo" },
-            { tempo: 196, texto: "Vai tá sorrindo como antigamente" },
-            { tempo: 202, texto: "Isso é normal, coisa que a gente sente" },
-
-            { tempo: 208, texto: "Desabafa, chora no meu peito" },
-            { tempo: 214, texto: "Mas me promete que amanhã bem cedo" },
-            { tempo: 220, texto: "Vai tá sorrindo como antigamente" },
-            { tempo: 226, texto: "Isso é normal, coisa que a gente sente" },
-            { tempo: 232, texto: "Pequena, eu tô aqui pra cuidar da gente" },
-
+            // Introdução
+            { tempo: 5, texto: "Tudo vai ficar bem" },
+            { tempo: 9, texto: "As flores vão nascer de novo depois de amanhã" },
+            { tempo: 15, texto: "Porque o inverno tá passando" },
+            { tempo: 19, texto: "A chuva já tá estiando" },
+            { tempo: 23, texto: "E o Sol voltou" },
+            // Primeira parte
+            { tempo: 27, texto: "Se quiser chorar, tudo bem" },
+            { tempo: 31, texto: "Meu ombro é seu travesseiro" },
+            { tempo: 35, texto: "Meu corpo, cobertor" },
+            { tempo: 39, texto: "Ninguém tá isento da dor" },
+            { tempo: 43, texto: "Mas diante do amor" },
+            { tempo: 47, texto: "Ela fica tão pequena, pequena" },
+            // Refrão 1
+            { tempo: 53, texto: "Pequena, não chore, não tenha medo" },
+            { tempo: 59, texto: "Isso é normal pra quem é de carne e osso" },
+            { tempo: 65, texto: "Não precisa fazer tanto esforço" },
+            { tempo: 71, texto: "Eu não sou diferente, também sou gente, já passei por isso" },
+            { tempo: 79, texto: "Se quiser, passo de novo com você" },
+            { tempo: 85, texto: "E se quer saber" },
+            // Ponte
+            { tempo: 89, texto: "Esse é o segredo" },
+            { tempo: 93, texto: "Desabafa, chora no meu peito" },
+            { tempo: 99, texto: "Mas me promete que amanhã bem cedo" },
+            { tempo: 105, texto: "Vai tá sorrindo como antigamente" },
+            { tempo: 111, texto: "Isso é normal, coisa que a gente sente" },
+            // Refrão 2
+            { tempo: 117, texto: "Desabafa, chora no meu peito" },
+            { tempo: 123, texto: "Mas me promete que amanhã bem cedo" },
+            { tempo: 129, texto: "Vai tá sorrindo como antigamente" },
+            { tempo: 135, texto: "Isso é normal, coisa que a gente sente" },
+            // Segunda parte igual
+            { tempo: 141, texto: "Pequena, não chore, não tenha medo" },
+            { tempo: 147, texto: "Isso é normal pra quem é de carne e osso" },
+            { tempo: 153, texto: "Não precisa fazer tanto esforço" },
+            { tempo: 159, texto: "Eu não sou diferente, também sou gente, já passei por isso" },
+            { tempo: 167, texto: "Se quiser, passo de novo com você" },
+            { tempo: 173, texto: "E se quer saber" },
+            // Ponte novamente
+            { tempo: 177, texto: "Esse é o segredo" },
+            { tempo: 181, texto: "Desabafa, chora no meu peito" },
+            { tempo: 187, texto: "Mas me promete que amanhã bem cedo" },
+            { tempo: 193, texto: "Vai tá sorrindo como antigamente" },
+            { tempo: 199, texto: "Isso é normal, coisa que a gente sente" },
+            // Refrão final
+            { tempo: 205, texto: "Desabafa, chora no meu peito" },
+            { tempo: 211, texto: "Mas me promete que amanhã bem cedo" },
+            { tempo: 217, texto: "Vai tá sorrindo como antigamente" },
+            { tempo: 223, texto: "Isso é normal, coisa que a gente sente" },
+            { tempo: 229, texto: "Pequena, eu tô aqui pra cuidar da gente" },
+            // Fim
             { tempo: 240, texto: "🎵<br>..." }
         ];
 
@@ -503,6 +450,9 @@
                     elementoLetra.style.opacity = 1;
                 }, 400);
             }
+
+            // Para depuração: mostra o tempo atual no console (opcional)
+            // console.log('Tempo atual:', tempoAtual);
         });
     </script>
 </body>
