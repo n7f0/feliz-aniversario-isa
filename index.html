@@ -112,6 +112,8 @@
             opacity: 1;
             margin-top: 15px;
         }
+
+        /* ===== CARD DA LETRA (com letra maior) ===== */
         .card-letra {
             max-width: 280px;
             flex: 1 1 200px;
@@ -126,10 +128,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
         }
         #letra-dinamica {
-            font-size: 1.4em;
+            font-size: 2em; /* AUMENTADO de 1.4em para 2em */
             line-height: 1.6;
             color: #ffb3c6;
             font-style: italic;
@@ -138,29 +139,17 @@
             transition: opacity 0.4s ease;
         }
         .icone-musica {
-            font-size: 1.8em;
+            font-size: 2.2em; /* Aumentado um pouco */
             margin-bottom: 15px;
             color: #ffb3c6;
         }
         .card-letra .artista {
-            font-size: 0.75em;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 1em; /* Aumentado de 0.75em para 1em */
+            color: rgba(255, 255, 255, 0.7);
             margin-top: 20px;
             font-weight: bold;
         }
-        .btn-sync {
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.7em;
-            cursor: pointer;
-            margin-top: 15px;
-            transition: 0.3s;
-            font-family: 'Fredoka', sans-serif;
-        }
-        .btn-sync:hover { background: rgba(255, 255, 255, 0.3); }
+
         .titulo-fotos-card {
             display: inline-block;
             background: rgba(0, 0, 0, 0.6);
@@ -186,7 +175,7 @@
             margin: 0 auto;
         }
 
-        /* === CARD DE CADA FOTO (melhorado) === */
+        /* Card de cada foto */
         .foto-card {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
@@ -208,7 +197,6 @@
             background: rgba(0, 0, 0, 0.8);
         }
 
-        /* Container da imagem – altura fixa, largura total */
         .foto-img {
             width: 100%;
             height: 200px;
@@ -224,16 +212,12 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             position: relative;
         }
-
-        /* A imagem ocupa todo o container */
         .foto-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
         }
-
-        /* O texto de fallback (número) fica centralizado atrás da imagem */
         .foto-img .fallback {
             position: absolute;
             font-size: 3em;
@@ -242,15 +226,12 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             pointer-events: none;
         }
-
-        /* Se a imagem não carregar, escondemos ela e mostramos o fallback */
         .foto-img img.hidden {
             display: none;
         }
         .foto-img .fallback.visible {
             display: block;
         }
-
         .foto-card p {
             margin: 15px 0 0 0;
             font-size: 1.1em;
@@ -258,7 +239,7 @@
             font-weight: 600;
         }
 
-        /* Modal (sem desfoque) */
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -323,43 +304,7 @@
         /* Áudio escondido */
         #meuAudio { display: none; }
 
-        .aviso-clique {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 51, 102, 0.9);
-            color: #fff;
-            padding: 12px 28px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            font-weight: bold;
-            box-shadow: 0 8px 25px rgba(255, 51, 102, 0.5);
-            z-index: 999;
-            animation: piscar 1.5s infinite;
-            display: none;
-            pointer-events: none;
-            border: 2px solid #fff;
-        }
-        .aviso-clique.mostrar { display: block; }
-
-        .som-status {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            font-size: 2em;
-            color: #fff;
-            background: rgba(0,0,0,0.5);
-            padding: 10px 14px;
-            border-radius: 50%;
-            backdrop-filter: blur(5px);
-            z-index: 999;
-            opacity: 0.8;
-            transition: 0.3s;
-            pointer-events: none;
-        }
-        .som-status.tocando { color: #4caf50; }
-        .som-status.mudo { color: #f44336; animation: piscar 1s infinite; }
+        /* REMOVIDOS: aviso-clique e som-status */
     </style>
 </head>
 <body>
@@ -380,14 +325,11 @@
                 <p class="dica-clique">(Toque na tela para a surpresa)</p>
             </div>
 
+            <!-- CARD DA LETRA (sem botão e com letra maior) -->
             <div class="card-letra">
                 <div class="icone-musica">🎵</div>
                 <p id="letra-dinamica">...</p>
                 <span class="artista">- Marília Mendonça</span>
-                <button class="btn-sync" id="btnSync">⏱️ Ajustar sincronia</button>
-                <span style="font-size:0.6em; color: rgba(255,255,255,0.4); margin-top:5px;">
-                    (clique no botão no momento exato do verso)
-                </span>
             </div>
 
         </div>
@@ -399,7 +341,7 @@
         <div class="fotos">
             <!-- FOTO 1 -->
             <div class="foto-card" onclick="abrirModal(1)">
-                <div class="foto-img" id="imgContainer1">
+                <div class="foto-img">
                     <span class="fallback visible">📷 1</span>
                     <img src="foto_card1.PNG" alt="Foto 1" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -407,7 +349,7 @@
             </div>
             <!-- FOTO 2 -->
             <div class="foto-card" onclick="abrirModal(2)">
-                <div class="foto-img" id="imgContainer2">
+                <div class="foto-img">
                     <span class="fallback visible">📷 2</span>
                     <img src="foto_card2.PNG" alt="Foto 2" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -415,7 +357,7 @@
             </div>
             <!-- FOTO 3 -->
             <div class="foto-card" onclick="abrirModal(3)">
-                <div class="foto-img" id="imgContainer3">
+                <div class="foto-img">
                     <span class="fallback visible">📷 3</span>
                     <img src="foto_card3.PNG" alt="Foto 3" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -423,7 +365,7 @@
             </div>
             <!-- FOTO 4 -->
             <div class="foto-card" onclick="abrirModal(4)">
-                <div class="foto-img" id="imgContainer4">
+                <div class="foto-img">
                     <span class="fallback visible">📷 4</span>
                     <img src="foto_card4.PNG" alt="Foto 4" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -431,7 +373,7 @@
             </div>
             <!-- FOTO 5 -->
             <div class="foto-card" onclick="abrirModal(5)">
-                <div class="foto-img" id="imgContainer5">
+                <div class="foto-img">
                     <span class="fallback visible">📷 5</span>
                     <img src="foto_card5.PNG" alt="Foto 5" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -456,72 +398,24 @@
         Seu navegador não suporta áudio.
     </audio>
 
-    <div class="aviso-clique" id="avisoClique">🔊 Clique em qualquer lugar para ouvir a música</div>
-    <div class="som-status mudo" id="somStatus">🔇</div>
-
     <script>
-        // ======= ÁUDIO =======
+        // ======= ÁUDIO (sem avisos) =======
         var audio = document.getElementById('meuAudio');
-        var aviso = document.getElementById('avisoClique');
-        var statusIcon = document.getElementById('somStatus');
 
-        function iniciarMusica() {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    aviso.classList.remove('mostrar');
-                    statusIcon.className = 'som-status tocando';
-                    statusIcon.textContent = '🔊';
-                }).catch(() => {
-                    statusIcon.className = 'som-status mudo';
-                    statusIcon.textContent = '⛔';
-                });
-            }
-        }
-
+        // Tenta tocar automaticamente
         window.addEventListener('load', function() {
-            var promessa = audio.play();
-            if (promessa !== undefined) {
-                promessa.then(() => {
-                    aviso.classList.remove('mostrar');
-                    statusIcon.className = 'som-status tocando';
-                    statusIcon.textContent = '🔊';
-                }).catch(() => {
-                    aviso.classList.add('mostrar');
-                    statusIcon.className = 'som-status mudo';
-                    statusIcon.textContent = '🔇';
+            audio.play().catch(function() {
+                // Se bloquear, o primeiro clique do usuário inicia
+            });
+        });
+
+        // Qualquer clique na página inicia a música (se estiver pausada)
+        document.body.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play().catch(function(e) {
+                    console.log('Erro ao tocar:', e);
                 });
             }
-        });
-
-        document.body.addEventListener('click', function() {
-            if (audio.paused) iniciarMusica();
-        });
-
-        audio.addEventListener('play', function() {
-            aviso.classList.remove('mostrar');
-            statusIcon.className = 'som-status tocando';
-            statusIcon.textContent = '🔊';
-        });
-
-        audio.addEventListener('pause', function() {
-            if (audio.currentTime < audio.duration) {
-                aviso.classList.add('mostrar');
-                statusIcon.className = 'som-status mudo';
-                statusIcon.textContent = '🔇';
-            }
-        });
-
-        audio.addEventListener('ended', function() {
-            aviso.classList.add('mostrar');
-            statusIcon.className = 'som-status mudo';
-            statusIcon.textContent = '🔇';
-        });
-
-        audio.addEventListener('error', function() {
-            aviso.textContent = '⚠️ Arquivo "musica.mp3" não encontrado!';
-            aviso.classList.add('mostrar');
-            statusIcon.className = 'som-status mudo';
-            statusIcon.textContent = '⛔';
         });
 
         // ======= SURPRESA =======
@@ -605,31 +499,6 @@
             }
         });
 
-        // ======= AJUSTE DE SINCRONIA =======
-        document.getElementById('btnSync').addEventListener('click', function() {
-            if (audio.paused) {
-                alert('A música está pausada. Dê play primeiro.');
-                return;
-            }
-            var tempoAtual = Math.round(audio.currentTime);
-            var idx = indiceAtual;
-            if (idx === -1) idx = 0;
-            var versoAtual = legendas[idx].texto;
-            var novoTexto = prompt('Verso atual: "' + versoAtual + '"\nDigite o texto correto para este momento:', versoAtual);
-            if (novoTexto !== null && novoTexto.trim() !== '') {
-                legendas[idx].texto = novoTexto.trim();
-            }
-            var novoTempo = prompt('Digite o tempo exato (em segundos) para este verso:', tempoAtual);
-            if (novoTempo !== null && !isNaN(novoTempo) && parseFloat(novoTempo) >= 0) {
-                legendas[idx].tempo = parseFloat(novoTempo);
-                legendas.sort((a, b) => a.tempo - b.tempo);
-                var elementoLetra = document.getElementById('letra-dinamica');
-                elementoLetra.innerHTML = legendas[idx].texto;
-                elementoLetra.style.opacity = 1;
-                alert('Sincronia ajustada! O verso "' + legendas[idx].texto + '" agora aparece no segundo ' + legendas[idx].tempo + '.');
-            }
-        });
-
         // ======= MODAL DAS FOTOS =======
         var mensagensFotos = {
             1: { titulo: "🌟 Primeiro clique", texto: "Essa foto é especial porque foi quando a gente se conheceu de verdade. Você já era incrível!" },
@@ -645,7 +514,6 @@
             var imgSrc = 'foto_card' + numero + '.PNG';
             var modalImg = document.getElementById('modalImagem');
             modalImg.src = imgSrc;
-            // Se a imagem não carregar, esconde e coloca um texto
             modalImg.onerror = function() {
                 this.style.display = 'none';
                 document.getElementById('modalTitulo').textContent = dados.titulo + ' (imagem não encontrada)';
