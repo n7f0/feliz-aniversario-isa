@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
 
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('fundo_site.png');
             background-size: cover;
@@ -18,8 +19,10 @@
             font-family: 'Fredoka', 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
             color: #d84b7a;
-            margin: 0;
-            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .barra-topo {
@@ -35,6 +38,8 @@
 
         .conteudo-principal {
             padding: 0 20px 40px 20px;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .container-capa-flex {
@@ -64,9 +69,7 @@
             transition: transform 0.2s ease;
         }
 
-        .card-capa:hover {
-            transform: scale(1.02);
-        }
+        .card-capa:hover { transform: scale(1.02); }
 
         h1 {
             color: #ffffff;
@@ -225,9 +228,51 @@
             font-weight: 600;
         }
 
-        #meuAudio {
-            display: none;
+        /* Áudio escondido */
+        #meuAudio { display: none; }
+
+        /* Aviso de "clique para tocar" */
+        .aviso-clique {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 51, 102, 0.9);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(255, 51, 102, 0.5);
+            z-index: 999;
+            animation: piscar 1.5s infinite;
+            display: none; /* oculto por padrão, aparece se precisar */
+            pointer-events: none; /* não bloqueia cliques */
+            border: 2px solid #fff;
         }
+
+        .aviso-clique.mostrar {
+            display: block;
+        }
+
+        /* Ícone de som no canto */
+        .som-status {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            font-size: 2em;
+            color: #fff;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 14px;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0.8;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        .som-status.tocando { color: #4caf50; }
+        .som-status.mudo { color: #f44336; animation: piscar 1s infinite; }
     </style>
 </head>
 <body>
@@ -271,26 +316,101 @@
 
     </div>
 
+    <!-- Áudio escondido -->
     <audio id="meuAudio" preload="auto">
         <source src="musica.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio.
     </audio>
 
+    <!-- Aviso flutuante -->
+    <div class="aviso-clique" id="avisoClique">🔊 Clique em qualquer lugar para ouvir a música</div>
+
+    <!-- Ícone de status do som -->
+    <div class="som-status mudo" id="somStatus">🔇</div>
+
     <script>
         var audio = document.getElementById('meuAudio');
+        var aviso = document.getElementById('avisoClique');
+        var statusIcon = document.getElementById('somStatus');
 
-        window.addEventListener('load', function() {
-            audio.play().catch(function() {});
-        });
-
-        document.body.addEventListener('click', function() {
+        // Função para iniciar a música
+        function iniciarMusica() {
             if (audio.paused) {
-                audio.play().catch(function(e) {
-                    console.log('Erro ao tocar:', e);
+                audio.play().then(() => {
+                    // Tocou com sucesso
+                    aviso.classList.remove('mostrar');
+                    statusIcon.className = 'som-status tocando';
+                    statusIcon.textContent = '🔊';
+                }).catch((err) => {
+                    // Se falhou (ex: arquivo não encontrado)
+                    statusIcon.className = 'som-status mudo';
+                    statusIcon.textContent = '⛔';
+                    aviso.textContent = '⚠️ Arquivo de música não encontrado!';
+                    aviso.classList.add('mostrar');
+                    console.error('Erro ao tocar:', err);
+                });
+            }
+        }
+
+        // 1. Tenta tocar automaticamente ao carregar
+        window.addEventListener('load', function() {
+            var promessa = audio.play();
+            if (promessa !== undefined) {
+                promessa.then(() => {
+                    // Autoplay permitido!
+                    aviso.classList.remove('mostrar');
+                    statusIcon.className = 'som-status tocando';
+                    statusIcon.textContent = '🔊';
+                }).catch(() => {
+                    // Autoplay bloqueado – mostra aviso
+                    aviso.classList.add('mostrar');
+                    statusIcon.className = 'som-status mudo';
+                    statusIcon.textContent = '🔇';
                 });
             }
         });
 
+        // 2. QUALQUER CLIQUE na página inicia a música (se estiver pausada)
+        document.body.addEventListener('click', function(e) {
+            // Se não está tocando, tenta iniciar
+            if (audio.paused) {
+                iniciarMusica();
+            }
+        });
+
+        // 3. Quando a música começar a tocar (evento play), esconde aviso
+        audio.addEventListener('play', function() {
+            aviso.classList.remove('mostrar');
+            statusIcon.className = 'som-status tocando';
+            statusIcon.textContent = '🔊';
+        });
+
+        // 4. Quando pausar (sem ser por erro), mostra aviso novamente
+        audio.addEventListener('pause', function() {
+            // Só mostra o aviso se não for porque a música terminou
+            if (audio.currentTime < audio.duration) {
+                aviso.classList.add('mostrar');
+                statusIcon.className = 'som-status mudo';
+                statusIcon.textContent = '🔇';
+            }
+        });
+
+        // 5. Quando terminar, aviso volta
+        audio.addEventListener('ended', function() {
+            aviso.classList.add('mostrar');
+            statusIcon.className = 'som-status mudo';
+            statusIcon.textContent = '🔇';
+        });
+
+        // 6. Se der erro no carregamento do áudio
+        audio.addEventListener('error', function() {
+            aviso.textContent = '⚠️ Arquivo "musica.mp3" não encontrado!';
+            aviso.classList.add('mostrar');
+            statusIcon.className = 'som-status mudo';
+            statusIcon.textContent = '⛔';
+        });
+
+        // Função da surpresa (texto escondido)
         function revelarSurpresa() {
             var texto = document.getElementById('texto-surpresa');
             var dica = document.querySelector('.dica-clique');
