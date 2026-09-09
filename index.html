@@ -65,7 +65,7 @@
         .card-capa:hover { transform: scale(1.02); }
         h1 {
             color: #ffffff;
-            font-size: 2.6em;
+            font-size: 3.2em; /* Texto maior */
             text-shadow: none;
             margin-top: 0;
             margin-bottom: 20px;
@@ -81,14 +81,14 @@
         }
         .legenda-capa {
             margin: 20px 0 0 0;
-            font-size: 1.4em;
+            font-size: 1.8em; /* Texto maior */
             color: #ffffff;
             font-weight: 600;
             font-style: italic;
         }
         .dica-clique {
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.7);
             margin-top: 10px;
             margin-bottom: 0;
             animation: piscar 2s infinite;
@@ -104,16 +104,14 @@
             overflow: hidden;
             transition: max-height 0.6s ease, opacity 0.6s ease, margin-top 0.6s ease;
             color: #ffffff;
-            font-size: 1.1em;
+            font-size: 1.4em; /* Texto maior */
             line-height: 1.5;
         }
         #texto-surpresa.mostrar {
-            max-height: 200px;
+            max-height: 250px;
             opacity: 1;
             margin-top: 15px;
         }
-
-        /* ===== CARD DA LETRA (com letra maior) ===== */
         .card-letra {
             max-width: 280px;
             flex: 1 1 200px;
@@ -128,9 +126,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
         #letra-dinamica {
-            font-size: 2em; /* AUMENTADO de 1.4em para 2em */
+            font-size: 1.4em;
             line-height: 1.6;
             color: #ffb3c6;
             font-style: italic;
@@ -139,17 +138,16 @@
             transition: opacity 0.4s ease;
         }
         .icone-musica {
-            font-size: 2.2em; /* Aumentado um pouco */
+            font-size: 1.8em;
             margin-bottom: 15px;
             color: #ffb3c6;
         }
         .card-letra .artista {
-            font-size: 1em; /* Aumentado de 0.75em para 1em */
-            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.6);
             margin-top: 20px;
             font-weight: bold;
         }
-
         .titulo-fotos-card {
             display: inline-block;
             background: rgba(0, 0, 0, 0.6);
@@ -174,8 +172,6 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-
-        /* Card de cada foto */
         .foto-card {
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
@@ -196,7 +192,6 @@
             box-shadow: 0 15px 30px rgba(255, 51, 102, 0.3);
             background: rgba(0, 0, 0, 0.8);
         }
-
         .foto-img {
             width: 100%;
             height: 200px;
@@ -226,12 +221,9 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             pointer-events: none;
         }
-        .foto-img img.hidden {
-            display: none;
-        }
-        .foto-img .fallback.visible {
-            display: block;
-        }
+        .foto-img img.hidden { display: none; }
+        .foto-img .fallback.visible { display: block; }
+
         .foto-card p {
             margin: 15px 0 0 0;
             font-size: 1.1em;
@@ -239,7 +231,6 @@
             font-weight: 600;
         }
 
-        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -301,10 +292,30 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        /* Áudio escondido */
         #meuAudio { display: none; }
 
-        /* REMOVIDOS: aviso-clique e som-status */
+        /* Ocultando o aviso permanentemente */
+        .aviso-clique {
+            display: none !important;
+        }
+
+        .som-status {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            font-size: 2em;
+            color: #fff;
+            background: rgba(0,0,0,0.5);
+            padding: 10px 14px;
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0.8;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+        .som-status.tocando { color: #4caf50; }
+        .som-status.mudo { color: #f44336; animation: piscar 1s infinite; }
     </style>
 </head>
 <body>
@@ -325,7 +336,7 @@
                 <p class="dica-clique">(Toque na tela para a surpresa)</p>
             </div>
 
-            <!-- CARD DA LETRA (sem botão e com letra maior) -->
+            <!-- Card da música limpo (sem botão de sincronia) -->
             <div class="card-letra">
                 <div class="icone-musica">🎵</div>
                 <p id="letra-dinamica">...</p>
@@ -341,7 +352,7 @@
         <div class="fotos">
             <!-- FOTO 1 -->
             <div class="foto-card" onclick="abrirModal(1)">
-                <div class="foto-img">
+                <div class="foto-img" id="imgContainer1">
                     <span class="fallback visible">📷 1</span>
                     <img src="foto_card1.PNG" alt="Foto 1" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -349,7 +360,7 @@
             </div>
             <!-- FOTO 2 -->
             <div class="foto-card" onclick="abrirModal(2)">
-                <div class="foto-img">
+                <div class="foto-img" id="imgContainer2">
                     <span class="fallback visible">📷 2</span>
                     <img src="foto_card2.PNG" alt="Foto 2" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -357,7 +368,7 @@
             </div>
             <!-- FOTO 3 -->
             <div class="foto-card" onclick="abrirModal(3)">
-                <div class="foto-img">
+                <div class="foto-img" id="imgContainer3">
                     <span class="fallback visible">📷 3</span>
                     <img src="foto_card3.PNG" alt="Foto 3" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -365,7 +376,7 @@
             </div>
             <!-- FOTO 4 -->
             <div class="foto-card" onclick="abrirModal(4)">
-                <div class="foto-img">
+                <div class="foto-img" id="imgContainer4">
                     <span class="fallback visible">📷 4</span>
                     <img src="foto_card4.PNG" alt="Foto 4" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -373,7 +384,7 @@
             </div>
             <!-- FOTO 5 -->
             <div class="foto-card" onclick="abrirModal(5)">
-                <div class="foto-img">
+                <div class="foto-img" id="imgContainer5">
                     <span class="fallback visible">📷 5</span>
                     <img src="foto_card5.PNG" alt="Foto 5" onerror="this.classList.add('hidden'); this.parentElement.querySelector('.fallback').classList.add('visible');">
                 </div>
@@ -398,24 +409,58 @@
         Seu navegador não suporta áudio.
     </audio>
 
+    <div class="aviso-clique" id="avisoClique"></div>
+    <div class="som-status mudo" id="somStatus">🔇</div>
+
     <script>
-        // ======= ÁUDIO (sem avisos) =======
+        // ======= ÁUDIO =======
         var audio = document.getElementById('meuAudio');
+        var statusIcon = document.getElementById('somStatus');
 
-        // Tenta tocar automaticamente
-        window.addEventListener('load', function() {
-            audio.play().catch(function() {
-                // Se bloquear, o primeiro clique do usuário inicia
-            });
-        });
-
-        // Qualquer clique na página inicia a música (se estiver pausada)
-        document.body.addEventListener('click', function() {
+        function iniciarMusica() {
             if (audio.paused) {
-                audio.play().catch(function(e) {
-                    console.log('Erro ao tocar:', e);
+                audio.play().then(() => {
+                    statusIcon.className = 'som-status tocando';
+                    statusIcon.textContent = '🔊';
+                }).catch(() => {
+                    statusIcon.className = 'som-status mudo';
+                    statusIcon.textContent = '⛔';
                 });
             }
+        }
+
+        window.addEventListener('load', function() {
+            var promessa = audio.play();
+            if (promessa !== undefined) {
+                promessa.then(() => {
+                    statusIcon.className = 'som-status tocando';
+                    statusIcon.textContent = '🔊';
+                }).catch(() => {
+                    statusIcon.className = 'som-status mudo';
+                    statusIcon.textContent = '🔇';
+                });
+            }
+        });
+
+        document.body.addEventListener('click', function() {
+            if (audio.paused) iniciarMusica();
+        });
+
+        audio.addEventListener('play', function() {
+            statusIcon.className = 'som-status tocando';
+            statusIcon.textContent = '🔊';
+        });
+
+        audio.addEventListener('pause', function() {
+            if (audio.currentTime < audio.duration) {
+                statusIcon.className = 'som-status mudo';
+                statusIcon.textContent = '🔇';
+            }
+        });
+
+        audio.addEventListener('ended', function() {
+            statusIcon.className = 'som-status mudo';
+            statusIcon.textContent = '🔇';
         });
 
         // ======= SURPRESA =======
