@@ -113,15 +113,13 @@
             margin-top: 15px;
         }
         .card-letra {
-            max-width: 280px;
-            flex: 1 1 200px;
-            background: rgba(0, 0, 0, 0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            padding: 30px 20px;
-            border-radius: 35px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 220px;
+            flex: 1 1 180px;
+            background: linear-gradient(160deg, #ffc8dd, #ff8fab);
+            padding: 22px 18px 26px 18px;
+            border-radius: 40px;
+            box-shadow: 0 12px 30px rgba(255, 105, 150, 0.5);
+            border: 3px solid #ffffff;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -129,23 +127,24 @@
             position: relative;
         }
         #letra-dinamica {
-            font-size: 1.4em;
-            line-height: 1.6;
-            color: #ffb3c6;
+            font-size: 1.7em;
+            line-height: 1.5;
+            color: #ffffff;
             font-style: italic;
             font-weight: 600;
             margin: 0;
+            text-shadow: 1px 2px 6px rgba(216, 75, 122, 0.6);
             transition: opacity 0.4s ease;
         }
         .icone-musica {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: #ffb3c6;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            animation: piscar 2s infinite;
         }
         .card-letra .artista {
-            font-size: 0.85em;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 20px;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.85);
+            margin-top: 16px;
             font-weight: bold;
         }
         .titulo-fotos-card {
@@ -285,23 +284,27 @@
 
         .aviso-clique { display: none !important; }
 
-        .som-status {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            font-size: 2em;
-            color: #fff;
-            background: rgba(0,0,0,0.5);
-            padding: 10px 14px;
-            border-radius: 50%;
-            backdrop-filter: blur(5px);
-            z-index: 999;
-            opacity: 0.8;
-            transition: 0.3s;
-            pointer-events: none;
+        .rodape-fofo {
+            width: 100%;
+            margin-top: 20px;
+            padding: 25px 20px 30px 20px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 3px solid #ffb3c6;
+            text-align: center;
         }
-        .som-status.tocando { color: #4caf50; }
-        .som-status.mudo { color: #f44336; animation: piscar 1s infinite; }
+        .rodape-fofo p {
+            color: #ffe3ec;
+            font-size: 1.15em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .rodape-emojis {
+            font-size: 1.4em;
+            display: inline-block;
+            animation: piscar 2.5s infinite;
+        }
     </style>
 </head>
 <body>
@@ -379,6 +382,11 @@
 
     </div>
 
+    <footer class="rodape-fofo">
+        <p>feito com 💗 especialmente para você</p>
+        <span class="rodape-emojis">🎀 🌸 ✨</span>
+    </footer>
+
     <!-- Modal -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal-box">
@@ -395,57 +403,23 @@
     </audio>
 
     <div class="aviso-clique" id="avisoClique"></div>
-    <div class="som-status mudo" id="somStatus">🔇</div>
 
     <script>
         // ======= ÁUDIO =======
         var audio = document.getElementById('meuAudio');
-        var statusIcon = document.getElementById('somStatus');
 
         function iniciarMusica() {
             if (audio.paused) {
-                audio.play().then(() => {
-                    statusIcon.className = 'som-status tocando';
-                    statusIcon.textContent = '🔊';
-                }).catch(() => {
-                    statusIcon.className = 'som-status mudo';
-                    statusIcon.textContent = '⛔';
-                });
+                audio.play().catch(() => {});
             }
         }
 
         window.addEventListener('load', function() {
-            var promessa = audio.play();
-            if (promessa !== undefined) {
-                promessa.then(() => {
-                    statusIcon.className = 'som-status tocando';
-                    statusIcon.textContent = '🔊';
-                }).catch(() => {
-                    statusIcon.className = 'som-status mudo';
-                    statusIcon.textContent = '🔇';
-                });
-            }
+            audio.play().catch(() => {});
         });
 
         document.body.addEventListener('click', function() {
             if (audio.paused) iniciarMusica();
-        });
-
-        audio.addEventListener('play', function() {
-            statusIcon.className = 'som-status tocando';
-            statusIcon.textContent = '🔊';
-        });
-
-        audio.addEventListener('pause', function() {
-            if (audio.currentTime < audio.duration) {
-                statusIcon.className = 'som-status mudo';
-                statusIcon.textContent = '🔇';
-            }
-        });
-
-        audio.addEventListener('ended', function() {
-            statusIcon.className = 'som-status mudo';
-            statusIcon.textContent = '🔇';
         });
 
         // ======= SURPRESA =======
